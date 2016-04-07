@@ -10,33 +10,52 @@
   <style type="text/css" src="css/app.css"></style>
 </head>
 <body>
-  <div id="wrapper">
-    <header>
-      Header
-    </header>
-    <nav>
-      Nav
-    </nav>
-    <section id="video">
-      <article>
-        <h1>Videos</h1>
-        <ul>
-          <li>
-            <video width="320" height="240" controls>
-              <source src=http://techslides.com/demos/sample-videos/small.ogv type=video/ogg>
-              <source src=http://techslides.com/demos/sample-videos/small.mp4 type=video/mp4>
-              Your browser does not support the video tag.
-            </video>
-          </li>
-        </ul>
-      </article>
-    </section>
-    <aside>
-      Sidebar
-    </aside>
-    <footer>
-      Footer
-    </footer>
-  </div>
+  <div id="video-container">
+  <!-- list of videos -->
+  <ul>
+    <li>
+      <video  width="640" height="365">
+        <source src="media/big_buck_bunny_720p_20mb.mp4" type="video/mp4">
+        <p>
+          Your browser doesn't support HTML5 video.
+          <a href="videos/mikethefrog.mp4">Download</a> the video instead.
+        </p>
+      </video>
+      <!-- Video Controls -->
+      <div >
+        <button type="button" >Play</button>
+        <input type="range"  value="0">
+      </div>
+    </li>
+    <li>
+      <video  width="640" height="365">
+        <source src="media/big_buck_bunny_720p_20mb.mp4" type="video/mp4">
+        <p>
+          Your browser doesn't support HTML5 video.
+          <a href="videos/mikethefrog.mp4">Download</a> the video instead.
+        </p>
+      </video>
+      <!-- Video Controls -->
+      <div >
+        <button type="button" >Play</button>
+        <input type="range" cvalue="0">
+      </div>
+    </li>
+    <li>
+      <video width="640" height="365">
+        <source src="media/big_buck_bunny_720p_20mb.mp4" type="video/mp4">
+        <p>
+          Your browser doesn't support HTML5 video.
+          <a href="videos/mikethefrog.mp4">Download</a> the video instead.
+        </p>
+      </video>
+      <!-- Video Controls -->
+      <div>
+        <button type="button" >Play</button>
+        <input type="range" value="0">
+      </div>
+    </li>
+  </ul>
+</div>
 </body>
 </html>
