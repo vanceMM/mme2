@@ -1,8 +1,15 @@
+
 document.addEventListener("DOMContentLoaded", domLoaded(), false);
 
-function domLoaded(e){
+function domLoaded(e) {
 
-    var btnListe = document.getElementsByClassName("playBtn");
+    playVideoOnClick();
+    showMenu();
+   
+};
+
+function playVideoOnClick(){
+  var btnListe = document.getElementsByClassName("playBtn");
     var videoListe = document.getElementsByClassName("video");
 
     var videoCount = videoListe.length;
@@ -38,4 +45,14 @@ function domLoaded(e){
         }
       }); // end of eventhandler      
     } // end of for
-};
+}
+
+function showMenu(){
+  var bodyEl = document.querySelector("body");
+  var navToggleBtn = document.getElementById("navBtn");
+
+  navToggleBtn.addEventListener("click", function(){
+    bodyEl.classList.toggle('active-nav');
+    //e.preventDefault();
+  });
+}
