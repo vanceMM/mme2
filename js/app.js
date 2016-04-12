@@ -5,7 +5,6 @@ function domLoaded(e) {
 
     playVideoOnClick();
     showMenu();
-   
 };
 
 function playVideoOnClick(){
