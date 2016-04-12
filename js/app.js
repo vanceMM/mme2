@@ -1,30 +1,41 @@
+document.addEventListener("DOMContentLoaded", domLoaded(), false);
 
-/*
-window.addEventListener("load", start, false);
+function domLoaded(e){
 
-function start() {
-  var container = document.getElementById('video-container');
+    var btnListe = document.getElementsByClassName("playBtn");
+    var videoListe = document.getElementsByClassName("video");
 
-  container.addEventListener("click", function alert(e) {
+    var videoCount = videoListe.length;
+    // loop through button array
 
-    if (e.target !== e.currentTarget) {
-        var clickedItem = e.target.id;
-        alert("Hello " + clickedItem);
-    }
-  });
-}
-*/
+    for (var i = 0; i < videoCount; i++){
+      var vidEl = document.getElementsByClassName("video");
 
+      vidEl[i].id = ["video"+i];
+      //console.log(el[i]);
 
-window.onload = function(){
+      btnListe[i].id = ["btn"+i];
+      //console.log(buttons[i]);
 
-  var buttons = document.getElementsByClassName("playBtn");
-  var buttonsCount = buttons.length;
-  for (var i = 0; i <= buttonsCount; i += 1){
-    buttons[i].onclick = function(e){
-      alert(this.id);
-    };
-  }
+      btnListe[i].addEventListener("click", function(){
+       
+        var clickedBtn = this.id;
+        //console.log(clickedBtn);        
+        var btnIndex = clickedBtn.substr(clickedBtn.length - 1);
+        //console.log(btnIndex);
+        var video2play = document.getElementById("video"+btnIndex);
+        //console.log(video2play);
+        var btnEl = document.getElementById(clickedBtn);
 
+        if (video2play.paused){
+          video2play.play();
 
-}
+          btnEl.innerHTML = "Pause";
+        }
+        else {
+          video2play.pause();
+          btnEl.innerHTML = "Play";
+        }
+      }); // end of eventhandler      
+    } // end of for
+};
