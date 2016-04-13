@@ -5,7 +5,7 @@ function domLoaded(e) {
     showMenu();
     playVideoOnClick();
     stopVideoOnCLick();
-    showHideVideos();
+    //showHideVideos();
 };
 
 function playVideoOnClick(){
@@ -16,9 +16,9 @@ function playVideoOnClick(){
     // loop through button array
 
     for (var i = 0; i < videoCount; i++){
-      var vidEl = document.getElementsByClassName("video");
+      //var vidEl = document.getElementsByClassName("video");
 
-      vidEl[i].id = ["video"+i];
+      videoListe[i].id = ["video"+i];
       //console.log(el[i]);
 
       btnListe[i].id = ["playBtn"+i];
@@ -28,8 +28,11 @@ function playVideoOnClick(){
        
         var clickedBtn = this.id;
         //console.log(clickedBtn);        
-        var btnIndex = clickedBtn.substr(clickedBtn.length - 1);
+        //var btnIndex = clickedBtn.substr(clickedBtn.length - 1);
+        var btnIndex = clickedBtn.substr(7);
         //console.log(btnIndex);
+        console.log("index")
+        console.log(btnIndex);
         var video2play = document.getElementById("video"+btnIndex);
         //console.log(video2play);
         var btnEl = document.getElementById(clickedBtn);
@@ -46,12 +49,12 @@ function playVideoOnClick(){
       }); // end of eventhandler
 
       // yolo video click listener
+      /*
       videoListe[i].addEventListener("click", function(){
        
         var clickedVid = this.id;
         //console.log(clickedBtn);        
         var vidIndex = clickedVid.substr(clickedVid.length - 1);
-        //console.log(btnIndex);
         var video2play = document.getElementById("video"+vidIndex);
         //console.log(video2play);
         var vidEl = document.getElementById(clickedVid);
@@ -62,7 +65,8 @@ function playVideoOnClick(){
         else {
           video2play.pause();
         }
-      }); // end of eventhandler       
+      }); // end of eventhandler
+    */       
     } // end of for
 }
 

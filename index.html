@@ -8,6 +8,7 @@
   <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+  <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -16,69 +17,109 @@
     <a href="#" class="nav-toggle-menu-btn" id="navBtn"><img src="media/menu.png"></a>
     <div id="avatar">
       <img src="media/Avatar.png">
-      <p>Je suis Juliette de France</p>
+      <p>Je suis Juliette de France.</p>
       <p>Follow me: <a href="#">@juliettewashere</a></p>
     </div>
     <ul>
-      <li><a href="#"> Home </a></li>
-      <li><a href="#"> Video 1 </a></li>
-      <li><a href="#"> Video 2 </a></li>
-      <li><a href="#"> Video 3 </a></li>
+      <li><a href="#index.html"> Home </a></li>
+      <li><a href="#video_1"> Video 1 </a></li>
+      <li><a href="#video_2"> Video 2 </a></li>
+      <li><a href="#video_3"> Video 3 </a></li>
     </ul>
   </nav>
 
   <!-- main content -->
   <div class="content">
-    <h1>MY PERSONAL V-LOG</h1>
+    <h1>VLOG.ME</h1>
     <div id="video-container">
       <!-- list of videos -->
       <ul>
+        <!--list item -->
         <li>
-          <video class="video" width="640" height="365">
-            <source src="media/big_buck_bunny_720p_20mb.mp4" type="video/mp4">
-            <p>
-              Your browser doesn't support HTML5 video.
-              <a href="videos/mikethefrog.mp4">Download</a> the video instead.
-            </p>
-          </video>
-          <!-- Video Controls -->
-          <div >
-            <button type="button" class="videoBtn playBtn">Play</button>
-            <button type="button" class="videoBtn stopBtn">Stop</button>
+          <div class="vid-container" id="video_1">
+            <div class="video-window">
+              <video class="video">
+                <source src="media/water.mp4" type="video/mp4">
+                <p>
+                  Your browser doesn't support HTML5 video.
+                  <a href="videos/mikethefrog.mp4">Download</a> the video instead.
+                </p>
+              </video>
+              <!-- Video Controls -->
+              <div class="video-controls">
+
+              </div>
+            </div>
+            <div class="vid-info">
+              <div class="vid-about">
+                <image src="https://images.unsplash.com/photo-1458724338480-79bc7a8352e4?crop=entropy&fit=crop&fm=jpg&h=875&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1900">
+              </div>
+              <div class="vid-description">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <button type="button" class="videoBtn playBtn">Play</button>
+                <button type="button" class="videoBtn stopBtn">Stop</button>
+              </div>
+            </div>
           </div>
         </li>
+        <!-- list item -->
         <li>
-          <video class="video" width="640" height="365">
-            <source src=http://techslides.com/demos/sample-videos/small.webm type=video/webm>
-              <p>
-                Your browser doesn't support HTML5 video.
-                <a href="videos/mikethefrog.mp4">Download</a> the video instead.
-              </p>
-          </video>
-          <!-- Video Controls -->
-          <div >
-            <button type="button" class="videoBtn playBtn">Play</button>
-            <button type="button" class="videoBtn stopBtn">Stop</button>
+          <div class="vid-container" id="video_2">
+            <div class="vid-info">
+              <div class="vid-about">
+                <image src="https://images.unsplash.com/photo-1454047637795-79e3325dfa0e?crop=entropy&fit=crop&fm=jpg&h=875&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1925">
+              </div>
+              <div class="vid-description">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <button type="button" class="videoBtn playBtn">Play</button>
+                <button type="button" class="videoBtn stopBtn">Stop</button>
+              </div>
+            </div>
+            <div class="video-window">
+              <video class="video">
+                <source src="media/bayw.mp4" type="video/mp4">
+                <p>
+                  Your browser doesn't support HTML5 video.
+                  <a href="videos/mikethefrog.mp4">Download</a> the video instead.
+                </p>
+              </video>
+              <!-- Video Controls -->
+              <div >
+              </div>
+            </div>
           </div>
         </li>
+        <!-- list item -->
         <li>
-          <video class="video" width="640" height="365">
-            <source src="media/big_buck_bunny_720p_20mb.mp4" type="video/mp4">
-            <p>
-              Your browser doesn't support HTML5 video.
-              <a href="videos/mikethefrog.mp4">Download</a> the video instead.
-            </p>
-          </video>
-          <!-- Video Controls -->
-          <div>
-            <button type="button" class="videoBtn playBtn">Play</button>
-            <button type="button" class="videoBtn stopBtn">Stop</button>
+          <div class="vid-container" id="video_3">
+            <div class="video-window">
+              <video class="video">
+                <source src="media/pplcity.mp4" type="video/mp4">
+                <p>
+                  Your browser doesn't support HTML5 video.
+                  <a href="videos/mikethefrog.mp4">Download</a> the video instead.
+                </p>
+              </video>
+              <!-- Video Controls -->
+              <div class="video-controls">
+              </div>
+            </div>
+            <div class="vid-info">
+              <div class="vid-about">
+                <image src="https://images.unsplash.com/photo-1439396087961-98bc12c21176?crop=entropy&fit=crop&fm=jpg&h=875&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1925">
+              </div>
+              <div class="vid-description">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <button type="button" class="videoBtn playBtn">Play</button>
+                <button type="button" class="videoBtn stopBtn">Stop</button>
+              </div>
+            </div>
           </div>
         </li>
       </ul>
     </div>
     <footer>
-      Copyright Bleckmann B. // Rezai A. C. // Risch V.
+      <p>Copyright Bleckmann B. // Rezai A. C. // Risch V.</p>
     </footer>
   </div>
 
