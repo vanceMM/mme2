@@ -9,25 +9,29 @@ function domLoaded(e) {
 };
 
 function playVideoOnClick(){
+
+    // getting collections of playbuttons and video elements by class
     var btnListe = document.getElementsByClassName("playBtn");
     var videoListe = document.getElementsByClassName("video");
 
     var videoCount = videoListe.length;
-    // loop through button array
 
+    //setting an eventlistener for each button iteratively
     for (var i = 0; i < videoCount; i++){
       //var vidEl = document.getElementsByClassName("video");
 
+      /*setting the ids for video and button elements, so each can be returned
+      individually in the closure for the eventlistener */
       videoListe[i].id = ["video"+i];
-      //console.log(el[i]);
 
       btnListe[i].id = ["playBtn"+i];
-      //console.log(buttons[i]);
 
       btnListe[i].addEventListener("click", function(){
        
-        var clickedBtn = this.id;
-        //console.log(clickedBtn);        
+        var clickedBtn = this.id;  
+
+        /*returning the index for the pushed button by substracting the string*/
+             
         //var btnIndex = clickedBtn.substr(clickedBtn.length - 1);
         var btnIndex = clickedBtn.substr(7);
         //console.log(btnIndex);
