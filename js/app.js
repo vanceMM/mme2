@@ -8,6 +8,13 @@ function domLoaded(e) {
     //showHideVideos();
 };
 
+function playVideoOnClickWithClosure(){
+
+  var playVideo = function () {
+    var video 
+  }
+}
+
 function playVideoOnClick(){
 
     // getting collections of playbuttons and video elements by class
@@ -30,7 +37,8 @@ function playVideoOnClick(){
        
         var clickedBtn = this.id;  
 
-        /*returning the index for the pushed button by substracting the string*/
+        /*Returning the index for the pushed button by substracting the string.
+        This index is used later for getting the actual video element.*/
              
         //var btnIndex = clickedBtn.substr(clickedBtn.length - 1);
         var btnIndex = clickedBtn.substr(7);
