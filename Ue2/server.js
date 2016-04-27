@@ -11,42 +11,20 @@ app.get('/time', function (req, res) {
   res.send(new Date().toLocaleTimeString());
 });
 
-app.use(express.static(path.join(__dirname,'static')));
-
-app.get('/static/:name', function (req, res, next) {
-
-  var options = {
-    root: __dirname + '/static/',
-    dotfiles: 'deny',
-    headers: {
-        'x-timestamp': Date.now(),
-        'x-sent': true
-    }
-  };
-
-  var fileName = req.params.name;
-  res.sendFile(fileName, options, function (err) {
-    if (err) {
-      console.log(err);
-      res.status(err.status).end();
-    }
-    else {
-      console.log('Sent:', fileName);
-    }
-  });
-
-});
-
-app.use(express.static(path.join(__dirname,'static')));
+app.use('/static', express.static(__dirname + '/static'));
 
 app.get('/:name', function (req, res, next) {
   var fileName = req.params.name;
 
   fs.readFile(fileName,'utf8', function(err, data) {
-  if (err) throw err;
+  if (err) {
+  console.log('file was not found');
+  return next();
+}
   var hrend = process.hrtime(hrstart);
 
   res.send(''+data+ '\n' + 'Execution time (hr): ' + hrend[1]/1000000 + 'ms' );
+
 });
 
 });
