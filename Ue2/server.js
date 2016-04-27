@@ -1,17 +1,15 @@
+/* Loading the required modules*/
+
 var express     = require('express');
 var app         = express();
 var path        = require('path');
 var fs          = require('fs');
 var hrstart     = process.hrtime();
 
-var re = new RegExp("Z*");
-
-app.get('/time', function (req, res) {
-  res.set('Content-Type', 'text/plain');
-  res.send(new Date().toLocaleTimeString());
-});
-
 app.use('/static', express.static(__dirname + '/static'));
+
+/*routing any filename input to a filereader, if the file does not exists the readFile methodes throws
+an error and goes on with the next route*/
 
 app.get('/:name', function (req, res, next) {
   var fileName = req.params.name;
@@ -29,7 +27,13 @@ app.get('/:name', function (req, res, next) {
 
 });
 
-app.get(re, function(req, res) {
+app.get('/time', function (req, res) {
+  //sets the Content-Type of the respond object
+  res.set('Content-Type', 'text/plain');
+  res.send(new Date().toLocaleTimeString());
+});
+
+app.get('*', function(req, res) {
   res.send('Hello World!');
 });
 
