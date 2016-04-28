@@ -1,8 +1,21 @@
 {
-  "name" : "uebung2",
-  "version" : "0.0.0",
-  "description" : "building a rest api in node",
-  "author" : "Benjamin Blekman, Aryan Rezai, Valentin Risch",
-  "license" : "bän sucht eine aus und erklärt sie uns:D"
-
+  "name": "uebung2_mme2",
+  "version": "1.0.0",
+  "description": "building a rest api in node",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "test"
+  },
+  "dependencies":{
+    "express":"*",
+    "body-parser":"*",
+    "path":"*",
+    "fs":"*"
+  },
+  "author": "Benjamin Blekman, Aryan Rezai, Valentin Risch",
+  "license": "GNU"
 }
