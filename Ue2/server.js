@@ -28,6 +28,7 @@ app.get('/:name', function (req, res, next) {
   console.log('file was not found');
   return next();
 }
+  //current high-resolution real time
   var hrend = process.hrtime(hrstart);
 
   res.send(''+data+ '\n' + 'Execution time (hr): ' + hrend[1]/1000000 + 'ms' );

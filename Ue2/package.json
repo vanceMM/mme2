@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "test"
+    "url": "https://github.com/vanceMM/mme2.git"
   },
   "dependencies":{
     "express":"*",
