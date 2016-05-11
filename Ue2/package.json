@@ -11,11 +11,9 @@
     "url": "https://github.com/vanceMM/mme2.git"
   },
   "dependencies":{
-    "express":"*",
-    "body-parser":"*",
-    "path":"*",
-    "fs":"*"
+    "express":"*"
   },
   "author": "Benjamin Blekman, Aryan Rezai, Valentin Risch",
-  "license": "GNU"
+  "email": "doge-mme2ue2@gmail.com",
+  "license": "WTFPL"
 }
