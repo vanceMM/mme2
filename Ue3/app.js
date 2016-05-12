@@ -27,7 +27,7 @@ var app = express();
 // Middleware ************************************
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false })); // set true!
 
 // logging
 app.use(function(req, res, next) {
@@ -67,7 +67,7 @@ app.use(function(req, res, next) {
 // Routes ***************************************
 
 app.get('/tweets', function(req,res,next) {
-    res.json(store.select('tweets'));
+    res.json(store.select('tweets', req.params.id));
 });
 
 app.post('/tweets', function(req,res,next) {
@@ -76,9 +76,9 @@ app.post('/tweets', function(req,res,next) {
     res.status(201).json(store.select('tweets', id));
 });
 
-
 app.get('/tweets/:id', function(req,res,next) {
     res.json(store.select('tweets', req.params.id));
+    var id = request.params.id;
 });
 
 app.delete('/tweets/:id', function(req,res,next) {
@@ -91,8 +91,31 @@ app.put('/tweets/:id', function(req,res,next) {
     res.status(200).end();
 });
 
-
 // TODO: add your routes etc.
+app.get('/comment', function(req,res,next) {
+    res.json(store.select('comment', req.params.id));
+});
+
+app.post('/comment', function(req,res,next) {
+    var id = store.insert('comment', req.body); 
+    // set code 201 "created" and send the item back
+    res.status(201).json(store.select('comment', id));
+});
+
+app.get('/comment/:id', function(req,res,next) {
+    res.json(store.select('comment', req.params.id));
+    var id = request.params.id;
+});
+
+app.delete('/comment/:id', function(req,res,next) {
+    store.remove('comment', req.params.id);
+    res.status(200).end();
+});
+
+app.put('/comment/:id', function(req,res,next) {
+    store.replace('comment', req.params.id, req.body);
+    res.status(200).end();
+});
 
 
 // CatchAll for the rest (unfound routes/resources ********

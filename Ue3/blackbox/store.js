@@ -56,11 +56,23 @@ var users = [
         lastname: "Doe"
     }
 ];
+var comment = [
+    {   id: globalCounter(),
+        content: "comment #1",
+        tweet: 101
+    },
+    {   id: globalCounter(),
+        content: "comment #2",
+        tweet: 101
+    }
+
+];
 
 // our "in memory database" is a simple object!
 var memory = {};
 memory.tweets = tweets;
 memory.users = users;
+memory.comment = comment;
 
 // private helper functions
 var checkElement = function(element) {
