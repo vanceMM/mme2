@@ -5,8 +5,8 @@
  * Best start with GET http://localhost:3000/tweets to see the JSON for it
  *
  * TODO: Start the server and play a little with Postman
- * TODO: Look at the Routes-section (starting line 68) and start there to add your code 
- * 
+ * TODO: Look at the Routes-section (starting line 68) and start there to add your code
+ *
  * @author Johannes Konert
  * @licence CC BY-SA 4.0
  *
@@ -17,6 +17,7 @@
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
+var url = require('url');
 
 // our own modules imports
 var store = require('./blackbox/store.js');
@@ -34,6 +35,14 @@ app.use(function(req, res, next) {
     console.log('Request of type '+req.method + ' to URL ' + req.originalUrl);
     next();
 });
+
+// Middleware for self relating reference URL, affects all types of requests, than passes control to the next handler
+
+app.use(function(req,res,next) {
+    res.locals.href = ({"href": req.protocol + '://' + req.get('host') + req.originalUrl});
+    next();
+});
+
 
 // API-Version control. We use HTTP Header field Accept-Version instead of URL-part /v1/
 app.use(function(req, res, next){
@@ -63,23 +72,54 @@ app.use(function(req, res, next) {
     }
 });
 
-
 // Routes ***************************************
 
 app.get('/tweets', function(req,res,next) {
-    res.json(store.select('tweets', req.params.id));
+
+    var tweets_href = {};
+    tweets_href.href = req.protocol + '://' + req.get('host') + req.originalUrl;
+    tweets_href.items = store.select('tweets');
+
+    tweets_href.items.forEach(function (item) {
+        var id = item.id;
+        item.comments = {};
+        item.comments.href = req.protocol + '://' + req.get('host') + "/tweets/" + item.id + "/comments"
+        item.comments.items = [];
+        item.comments.items = store.select('comment').filter(function (item) {
+            console.log(id);
+            return item.tweet == id;
+        });
+        item.creator.href = req.protocol + '://' + req.get('host') + "/users/" + item.creator.href;
+    });
+    res.json(tweets_href);
+
 });
 
 app.post('/tweets', function(req,res,next) {
-    var id = store.insert('tweets', req.body); 
+    var id = store.insert('tweets', req.body);
     // set code 201 "created" and send the item back
     res.status(201).json(store.select('tweets', id));
 });
 
 app.get('/tweets/:id', function(req,res,next) {
-    res.json(store.select('tweets', req.params.id));
-    var id = request.params.id;
+
+
+
+    var tweets_href = store.select('tweets', req.params.id) ;
+    tweets_href.href = req.protocol + '://' + req.get('host') + req.originalUrl ;
+    res.json(tweets_href);
+
 });
+
+//filter function
+
+function filterByID(obj) {
+    if ('tweet' in obj == id ) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 app.delete('/tweets/:id', function(req,res,next) {
     store.remove('tweets', req.params.id);
@@ -116,7 +156,6 @@ app.put('/comment/:id', function(req,res,next) {
     store.replace('comment', req.params.id, req.body);
     res.status(200).end();
 });
-
 
 // CatchAll for the rest (unfound routes/resources ********
 
@@ -155,6 +194,7 @@ app.use(function(err, req, res, next) {
         }
     });
 });
+
 
 
 // Start server ****************************

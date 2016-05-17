@@ -36,13 +36,13 @@ var tweets = [
     {   id: globalCounter(),
         message: "Hello world tweet",
         creator: {
-            href: "http://localhost:3000/users/103"
+            href: 103
         }
     },
     {   id: globalCounter(),
         message: "Another nice tweet",
         creator: {
-            href: "http://localhost:3000/users/104"
+            href: 104
         }
     }
 ];
@@ -56,6 +56,7 @@ var users = [
         lastname: "Doe"
     }
 ];
+
 var comment = [
     {   id: globalCounter(),
         content: "comment #1",
@@ -63,7 +64,8 @@ var comment = [
     },
     {   id: globalCounter(),
         content: "comment #2",
-        tweet: 101
+        tweet: 102
+
     }
 
 ];
@@ -72,7 +74,9 @@ var comment = [
 var memory = {};
 memory.tweets = tweets;
 memory.users = users;
+
 memory.comment = comment;
+
 
 // private helper functions
 var checkElement = function(element) {
