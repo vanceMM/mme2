@@ -37,10 +37,12 @@ app.use(function(req, res, next) {
 });
 
 // Middleware for self relating reference URL, affects all types of requests, than passes control to the next handler
+/**
 app.use(function(req,res,next) {
     res.locals.href = ({"href": req.protocol + '://' + req.get('host') + req.originalUrl});
     next();
 });
+**/
 
 // API-Version control. We use HTTP Header field Accept-Version instead of URL-part /v1/
 app.use(function(req, res, next){
@@ -73,11 +75,19 @@ app.use(function(req, res, next) {
 // Routes ***************************************
 
 app.get('/tweets', function(req,res,next) {
-    var obj = {};
-    obj.tweets = store.select('tweets');
-    obj.tweets.href = res.locals.href;
-    console.log(obj);
-    res.json(obj);
+    var tweets_href = res.locals.href;
+    console.log(tweets_href);
+    tweets_href.items = store.select('tweets');
+    tweets_href.items.forEach(function (item) {
+        item.creator.href = req.protocol + '://' + req.get('host') + "/users/" + item.creator.href;
+    })
+    tweets_href.items.forEach(function (item) {
+        item.comments.forEach(function (item) {
+            item.href = req.protocol + '://' + req.get('host') + "/comments/" + item.href;
+        })
+    })
+    console.log(tweets_href);
+    res.json(tweets_href);
 
 });
 
@@ -89,8 +99,9 @@ app.post('/tweets', function(req,res,next) {
 
 
 app.get('/tweets/:id', function(req,res,next) {
-    var obj = store.select('tweets', req.params.id);
-    res.json(obj);
+    var tweets_href = store.select('tweets', req.params.id) ;
+    tweets_href.href = req.protocol + '://' + req.get('host') + req.originalUrl ;
+    res.json(tweets_href);
 });
 
 //filter function

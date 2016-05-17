@@ -36,14 +36,24 @@ var tweets = [
     {   id: globalCounter(),
         message: "Hello world tweet",
         creator: {
-            href: "http://localhost:3000/users/103"
-        }
+            href: 103
+        },
+        comments: [{
+            href: 108
+        },{
+            href: 107
+        }]
     },
     {   id: globalCounter(),
         message: "Another nice tweet",
         creator: {
-            href: "http://localhost:3000/users/104"
-        }
+            href: 104
+        },
+        comments: [{
+            href: 105
+        },{
+            href: 106
+        }]
     }
 ];
 var users = [
@@ -56,11 +66,38 @@ var users = [
         lastname: "Doe"
     }
 ];
+var comments = [
+    { id: globalCounter(),
+        content: "this is a comment",
+        creator: 103,
+        tweet: 101
+    },
+    {
+        id: globalCounter(),
+        content: "another comment",
+        creator: 103,
+        tweet: 102
+    },
+    {
+        id: globalCounter(),
+        content: "comment whatever",
+        creator: 104,
+        tweet: 101
+    },
+    {
+        id: globalCounter(),
+        content: "for realz?",
+        creator: 104,
+        tweet: 102
+    }
+
+];
 
 // our "in memory database" is a simple object!
 var memory = {};
 memory.tweets = tweets;
 memory.users = users;
+memory.comments = comments;
 
 // private helper functions
 var checkElement = function(element) {
@@ -161,6 +198,33 @@ var store = {
         });
         memory[type].splice(index, 1);
         return this;
+    },
+    /**
+     *
+     * @param obj
+     * @param req
+     * @returns {*}
+     */
+    getHref: function(obj, req) {
+        var _obj = obj;
+
+        if( _obj instanceof Array ) {
+            _obj.forEach(function(obj) {
+
+                var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl+ "/"+ obj.id;
+                obj.href = fullUrl;
+
+            });
+            //
+            return _obj;
+        }else{
+            var fullUrl = req.protocol + '://' + req.get('host') + req.path;
+            _obj.href = fullUrl;
+            return _obj;
+        }
+
+        return undefined;
+
     }
 };
 module.exports = store; // let require use the store object
