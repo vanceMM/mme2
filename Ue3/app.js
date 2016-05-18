@@ -77,6 +77,7 @@ app.get('/tweets', function(req,res,next) {
     //itereate over items and add the references
     tweets_href.items.forEach(function (item) {
         var id = item.id;
+        var creator = item.creator.href;
         item.comments = {};
         item.comments.href = req.protocol + '://' + req.get('host') + "/tweets/" + item.id + "/comments"
         item.comments.items = [];
@@ -84,7 +85,6 @@ app.get('/tweets', function(req,res,next) {
             console.log(id);
             return item.tweet == id;
         });
-        item.creator.href = req.protocol + '://' + req.get('host') + "/users/" + item.creator.href;
     });
     //send the object as json
     res.json(tweets_href);
@@ -98,9 +98,16 @@ app.post('/tweets', function(req,res,next) {
 });
 
 app.get('/tweets/:id', function(req,res,next) {
+    var id = req.params.id;
     var tweets_href = {};
     tweets_href.href = req.protocol + '://' + req.get('host') + req.originalUrl ;
     tweets_href.items = store.select('tweets', req.params.id);
+    tweets_href.comments = {};
+    tweets_href.comments.href = req.protocol + '://' + req.get('host') + req.originalUrl + "/comments";
+    tweets_href.comments.items = store.select('comment').filter(function (item) {
+        return item.tweet == id;
+    });
+
     res.json(tweets_href);
 
 });
