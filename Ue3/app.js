@@ -7,7 +7,7 @@
  * TODO: Start the server and play a little with Postman
  * TODO: Look at the Routes-section (starting line 68) and start there to add your code
  *
- * @author Johannes Konert(edited by Aryan Rezai,
+ * @author Johannes Konert(edited by Aryan Rezai, Benjamin Blekmann, Valentin Risch)
  * @licence CC BY-SA 4.0
  *
  */
@@ -33,13 +33,6 @@ app.use(bodyParser.urlencoded({ extended: false })); // set true!
 // logging
 app.use(function(req, res, next) {
     console.log('Request of type '+req.method + ' to URL ' + req.originalUrl);
-    next();
-});
-
-// Middleware for self relating reference URL, affects all types of requests, than passes control to the next handler
-
-app.use(function(req,res,next) {
-    res.locals.href = ({"href": req.protocol + '://' + req.get('host') + req.originalUrl});
     next();
 });
 
@@ -75,12 +68,13 @@ app.use(function(req, res, next) {
 // Routes ***************************************
 
 app.get('/tweets', function(req,res,next) {
-
+    // create emtpy object
     var tweets_href = {};
-    //
+    // set the href attribut of the request for http://host/tweets
     tweets_href.href = req.protocol + '://' + req.get('host') + req.originalUrl;
+    // fill the items array with tweets
     tweets_href.items = store.select('tweets');
-
+    //itereate over items and add the references
     tweets_href.items.forEach(function (item) {
         var id = item.id;
         item.comments = {};
@@ -92,6 +86,7 @@ app.get('/tweets', function(req,res,next) {
         });
         item.creator.href = req.protocol + '://' + req.get('host') + "/users/" + item.creator.href;
     });
+    //send the object as json
     res.json(tweets_href);
 
 });
@@ -103,24 +98,12 @@ app.post('/tweets', function(req,res,next) {
 });
 
 app.get('/tweets/:id', function(req,res,next) {
-
-
-
-    var tweets_href = store.select('tweets', req.params.id) ;
+    var tweets_href = {};
     tweets_href.href = req.protocol + '://' + req.get('host') + req.originalUrl ;
+    tweets_href.items = store.select('tweets', req.params.id);
     res.json(tweets_href);
 
 });
-
-//filter function
-
-function filterByID(obj) {
-    if ('tweet' in obj == id ) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 app.delete('/tweets/:id', function(req,res,next) {
     store.remove('tweets', req.params.id);

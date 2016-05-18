@@ -66,6 +66,16 @@ var comment = [
         content: "comment #2",
         tweet: 102
 
+    },
+    {
+        id: globalCounter(),
+        content: "comment #3",
+        tweet: 101
+    },
+    {
+        id: globalCounter(),
+        content: "comment #4",
+        tweet: 102
     }
 
 ];
