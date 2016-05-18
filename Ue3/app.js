@@ -7,7 +7,7 @@
  * TODO: Start the server and play a little with Postman
  * TODO: Look at the Routes-section (starting line 68) and start there to add your code
  *
- * @author Johannes Konert
+ * @author Johannes Konert(edited by Aryan Rezai,
  * @licence CC BY-SA 4.0
  *
  */
@@ -77,6 +77,7 @@ app.use(function(req, res, next) {
 app.get('/tweets', function(req,res,next) {
 
     var tweets_href = {};
+    //
     tweets_href.href = req.protocol + '://' + req.get('host') + req.originalUrl;
     tweets_href.items = store.select('tweets');
 
