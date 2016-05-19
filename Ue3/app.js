@@ -100,8 +100,11 @@ app.post('/tweets', function(req,res,next) {
 // get a tweet by its id and create dynamic href
 // TODO: abfrage, wenn tweet nicht da - dann keine erstellung der hrefs
 app.get('/tweets/:tweetsId', function(req,res,next) {
-  var tweetId = store.select('tweets', req.params.tweetsId).id;
-  if (tweetId == req.params.tweetsId){
+  var tweetId = store.select('tweets', req.params.tweetsId);
+  if (tweetId == undefined) {
+    res.status(404).end();
+  }
+  else if (tweetId.id == req.params.tweetsId){
     var id = req.params.tweetsId;
     var tweets_href = {};
     tweets_href.href = req.protocol + '://' + req.get('host') + req.originalUrl ;
@@ -114,7 +117,7 @@ app.get('/tweets/:tweetsId', function(req,res,next) {
 
     res.json(tweets_href);
   }
-  else res.status(400).end();
+
 });
 
 
