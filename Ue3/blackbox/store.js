@@ -12,7 +12,7 @@
  *
  *  WARNING: DO NOT solve task 2 of your exercise by adding hard-coded href:-attributes in this file here!
  *
- *  
+ *
  * @author Johannes Konert
  * @licence  CC BY-SA 4.0
  *
@@ -60,22 +60,22 @@ var users = [
 var comment = [
     {   id: globalCounter(),
         content: "comment #1",
-        tweet: 101
+        tweetId: 101
     },
     {   id: globalCounter(),
         content: "comment #2",
-        tweet: 102
+        tweetId: 102
 
     },
     {
         id: globalCounter(),
         content: "comment #3",
-        tweet: 101
+        tweetId: 101
     },
     {
         id: globalCounter(),
         content: "comment #4",
-        tweet: 102
+        tweetId: 102
     }
 
 ];
