@@ -69,6 +69,7 @@ app.use(function(req, res, next) {
 // Routes ***************************************
 // Tweets
 
+// get all tweets and create dynamic href's
 app.get('/tweets', function(req,res,next) {
     var tweets_href = {};                                                             // create emtpy object
     tweets_href.href = req.protocol + '://' + req.get('host') + req.originalUrl;      // set the href attribut of the request for http://host/tweets
@@ -78,7 +79,7 @@ app.get('/tweets', function(req,res,next) {
         item.comments = {};                                                           // add key "comments" to tweet object (item) with empty
         item.comments.href  = req.protocol + '://' + req.get('host') + "/tweets/" + item.id + "/comments";
         //item.comments.items = [];
-        if (req.query.expand){
+        if (req.query.expand){        // query for expand
             item.comments.items = store.select('comment').filter(function (item) {
             //console.log(id);
             return item.tweetId == id;
@@ -89,13 +90,18 @@ app.get('/tweets', function(req,res,next) {
 
 });
 
+// inserts a new tweet
 app.post('/tweets', function(req,res,next) {
     var id = store.insert('tweets', req.body);
     // set code 201 "created" and send the item back
     res.status(201).json(store.select('tweets', id));
 });
 
+// get a tweet by its id and create dynamic href
+// TODO: abfrage, wenn tweet nicht da - dann keine erstellung der hrefs
 app.get('/tweets/:tweetsId', function(req,res,next) {
+  var tweetId = store.select('tweets', req.params.tweetsId).id;
+  if (tweetId == req.params.tweetsId){
     var id = req.params.tweetsId;
     var tweets_href = {};
     tweets_href.href = req.protocol + '://' + req.get('host') + req.originalUrl ;
@@ -107,29 +113,25 @@ app.get('/tweets/:tweetsId', function(req,res,next) {
     });
 
     res.json(tweets_href);
+  }
+  else res.status(400).end();
+});
 
-});
-/*
-app.delete('/tweets/:tweetsId', function(req,res,next) {
-    store.remove('tweets', req.params.tweetsId);
-    res.status(200).end();
-});
-*/
 
 // TODO: also delete matching comments of the tweet
 app.delete('/tweets/:tweetsId', function(req,res,next) {
+    // brauch comment id
+    // schleife, die comment id zum passenden tweet holt
     //var comments = {};
     //var comments = store.select('comment').filter(function (item){
       //return item.tweetId == req.params.tweetsId;
     //});
     //store.remove('comment', 106);
-    //store.remove('comment', 106);
     store.remove('tweets', req.params.tweetsId);
     res.status(200).end();
 });
-//brauch comment id
-// schleife, die comment id zum passenden tweet holt
 
+// updates an excisting tweet by its id
 app.put('/tweets/:tweetsId', function(req,res,next) {
     store.replace('tweets', req.params.tweetsId, req.body);
     res.status(200).end();
@@ -139,10 +141,12 @@ app.put('/tweets/:tweetsId', function(req,res,next) {
 // Comments ****************
 
 // TODO: add your routes etc.
+// gets all excisting comments (test function)
 app.get('/comments', function(req,res,next) {
     res.json(store.select('comment', req.params.id));
 });
 
+// gets all comments of a specific tweet by its tweetId
 app.get('/tweets/:id/comments', function(req,res,next) {
   //regexmatch("[0-9]+",req.params.id )
   var comments_href = {};
@@ -159,23 +163,18 @@ app.get('/tweets/:id/comments', function(req,res,next) {
     res.status(204);
 });
 
-/*
-app.post('/comments', function(req,res,next) {
-    var id = store.insert('comments', req.body);
-    // set code 201 "created" and send the item back
-    res.status(201).json(store.select('comments', id));
-});
-*/
+// posts a new comment for a tweet by its tweetId
 app.post('/tweets/:tweetId/comments', function(req,res,next) {
-    req.body.tweetId = req.params.tweetId;
+    req.body.tweetId = req.params.tweetId;              // generate tweetId for comment
     var id = store.insert('comment', req.body);
     // set code 201 "created" and send the item back
     res.status(201).json(store.select('comment', id));
 });
 
+// get a specific comment to its tweet by the tweetId, creates dynamic href for comment
 app.get('/tweets/:tweetId/comments/:commentId', function(req,res,next) {
-    var tweetId = store.select('comment', req.params.commentId).tweetId;
-    if (tweetId == req.params.tweetId){
+    var commentTweetId = store.select('comment', req.params.commentId).tweetId;
+    if (commentTweetId == req.params.tweetId){
       var id = req.params.commentId;
       var comment_href = {};
       comment_href.href = req.protocol + '://' + req.get('host') + req.originalUrl;
@@ -186,25 +185,20 @@ app.get('/tweets/:tweetId/comments/:commentId', function(req,res,next) {
     else res.status(400).end();
 });
 
+// deletes an excisting comment of a specific tweet by its id
 app.delete('/tweets/:tweetId/comments/:commentId', function(req,res,next) {
-    var tweetId = store.select('comment', req.params.commentId).tweetId;
-    if (tweetId == req.params.tweetId){
+    var commentTweetId = store.select('comment', req.params.commentId).tweetId;
+    if (commentTweetId == req.params.tweetId){
       store.remove('comment', req.params.commentId);
       res.status(200).end();
     }
     else res.status(400).end();
 });
 
-/*
+// updates a new comment for a specific tweet by its id
 app.put('/tweets/:tweetId/comments/:commentId', function(req,res,next) {
-    req.body.tweetId = req.params.tweetId;
-    store.replace('comment', req.params.commentId, req.body);
-    res.status(200).end();
-});
-*/
-app.put('/tweets/:tweetId/comments/:commentId', function(req,res,next) {
-  var tweetId = store.select('comment', req.params.commentId).tweetId;
-  if (tweetId == req.params.tweetId){
+  var commentTweetId = store.select('comment', req.params.commentId).tweetId;
+  if (commentTweetId == req.params.tweetId){
     store.replace('comment', req.params.commentId, req.body);
     res.status(200).end();
   }
@@ -212,10 +206,19 @@ app.put('/tweets/:tweetId/comments/:commentId', function(req,res,next) {
 });
 
 
+// patches an excisting comment for a specific tweet by its id
+/*
+    http://www.restapitutorial.com/lessons/idempotency.html
+    http://restcookbook.com/HTTP%20Methods/patch/
+*/
 app.patch('/tweets/:tweetId/comments/:commentId', function(req,res,next) {
-    var commentPatch = store.select('comment', req.params.commentId);
-    extend(commentPatch, req.body);
-    res.status(200).end();
+    var commentTweetId = store.select('comment', req.params.commentId).tweetId;
+    if (commentTweetId == req.params.tweetId){
+      var commentPatch = store.select('comment', req.params.commentId);
+      extend(commentPatch, req.body);
+      res.status(200).end();
+    }
+    else res.status(400).end();
 });
 
 

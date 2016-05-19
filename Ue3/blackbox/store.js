@@ -57,6 +57,7 @@ var users = [
     }
 ];
 
+// comments for tweets
 var comment = [
     {   id: globalCounter(),
         content: "comment #1",
