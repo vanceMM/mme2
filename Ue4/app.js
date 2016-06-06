@@ -24,7 +24,8 @@ var debug = require('debug')('me2u4:server');
 var store = require('./blackbox/store.js');
 var restAPIchecks = require('./restapi/request-checks.js');
 var videos = require('./routes/videos');
-
+var filter = require('./restapi/filter');
+var limit = require('./restapi/limit');
 
 
 // app creation
@@ -40,6 +41,12 @@ app.use(requestLogger('dev'));
 
 // API request checks for API-version and JSON etc. (same checks as in Ü3)
 app.use(restAPIchecks);
+
+// API request filter
+app.use('/videos', filter);
+
+// API request browsing
+app.use('/videos', limit);
 
 
 // Routes ******************************************************
