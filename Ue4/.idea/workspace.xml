@@ -34,8 +34,8 @@
       <file leaf-file-name="videos_rest_api_2a_test.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/videos_rest_api_2a_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
+            <state relative-caret-position="138">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -71,11 +71,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="limit.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="limit.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/restapi/limit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="18" column="91" selection-start-line="18" selection-start-column="91" selection-end-line="18" selection-end-column="91" />
+            <state relative-caret-position="266">
+              <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="videos_rest_api_2b_test.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/videos_rest_api_2b_test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="129">
+              <caret line="256" column="8" selection-start-line="256" selection-start-column="8" selection-end-line="256" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -84,8 +94,8 @@
       <file leaf-file-name="config_for_tests.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/config_for_tests.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="1" selection-start-line="25" selection-start-column="33" selection-end-line="29" selection-end-column="1" />
+            <state relative-caret-position="104">
+              <caret line="25" column="3" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -127,9 +137,9 @@
         <option value="internal/module.js" />
         <option value="$PROJECT_DIR$/restapi/filer.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/test/videos_rest_api_2b_test.js" />
         <option value="$PROJECT_DIR$/routes/videos.js" />
         <option value="$PROJECT_DIR$/restapi/filter.js" />
+        <option value="$PROJECT_DIR$/test/videos_rest_api_2b_test.js" />
         <option value="$PROJECT_DIR$/restapi/limit.js" />
       </list>
     </option>
@@ -321,7 +331,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="/Volumes/extern 2/Downloads/Ü3-Muloe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -337,8 +347,8 @@
       <recent name="$PROJECT_DIR$/test-disabled" />
     </key>
   </component>
-  <component name="RunManager" selected="Mocha.test">
-    <configuration default="false" name="test" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Mocha.testAll">
+    <configuration default="false" name="testAll" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <working-directory>$PROJECT_DIR$</working-directory>
@@ -354,7 +364,7 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <configuration default="false" name="test/videos_rest_api_1a_test.js" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Task 2.b Limits and Offset./videos REST API Filling by Posts (prepare)" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <working-directory>$PROJECT_DIR$</working-directory>
@@ -365,53 +375,12 @@
       </envs>
       <ui>bdd</ui>
       <extra-mocha-options />
-      <test-kind>TEST_FILE</test-kind>
-      <test-file>$PROJECT_DIR$/test/videos_rest_api_1a_test.js</test-file>
-      <method />
-    </configuration>
-    <configuration default="false" name="test/videos_rest_api_1b_test.js" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs>
-        <env name="NODE_ENV" value="developement" />
-        <env name="DEBUG" value="me2u4:*" />
-      </envs>
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>TEST_FILE</test-kind>
-      <test-file>$PROJECT_DIR$/test/videos_rest_api_1b_test.js</test-file>
-      <method />
-    </configuration>
-    <configuration default="false" name="test/videos_rest_api_2a_test.js" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs>
-        <env name="NODE_ENV" value="developement" />
-        <env name="DEBUG" value="me2u4:*" />
-      </envs>
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>TEST_FILE</test-kind>
-      <test-file>$PROJECT_DIR$/test/videos_rest_api_2a_test.js</test-file>
-      <method />
-    </configuration>
-    <configuration default="false" name="test/videos_rest_api_2b_test.js" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs>
-        <env name="NODE_ENV" value="developement" />
-        <env name="DEBUG" value="me2u4:*" />
-      </envs>
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>TEST_FILE</test-kind>
+      <test-kind>SUITE</test-kind>
       <test-file>$PROJECT_DIR$/test/videos_rest_api_2b_test.js</test-file>
+      <test-names>
+        <name value="Task 2.b Limits and Offset" />
+        <name value="/videos REST API Filling by Posts (prepare)" />
+      </test-names>
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -466,24 +435,18 @@
       <ui>bdd</ui>
       <extra-mocha-options />
       <test-kind>DIRECTORY</test-kind>
-      <test-directory />
+      <test-directory>$PROJECT_DIR$/test</test-directory>
       <recursive>false</recursive>
       <method />
     </configuration>
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Mocha.test" />
-      <item index="1" class="java.lang.String" itemvalue="Mocha.test/videos_rest_api_1a_test.js" />
-      <item index="2" class="java.lang.String" itemvalue="Mocha.test/videos_rest_api_1b_test.js" />
-      <item index="3" class="java.lang.String" itemvalue="Mocha.test/videos_rest_api_2a_test.js" />
-      <item index="4" class="java.lang.String" itemvalue="Mocha.test/videos_rest_api_2b_test.js" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Mocha.testAll" />
+      <item index="1" class="java.lang.String" itemvalue="Mocha.Task 2.b Limits and Offset./videos REST API Filling by Posts (prepare)" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Mocha.test" />
-        <item index="1" class="java.lang.String" itemvalue="Mocha.test/videos_rest_api_2b_test.js" />
-        <item index="2" class="java.lang.String" itemvalue="Mocha.test/videos_rest_api_2a_test.js" />
-        <item index="3" class="java.lang.String" itemvalue="Mocha.test/videos_rest_api_1b_test.js" />
-        <item index="4" class="java.lang.String" itemvalue="Mocha.test/videos_rest_api_1a_test.js" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Mocha.testAll" />
+        <item index="1" class="java.lang.String" itemvalue="Mocha.Task 2.b Limits and Offset./videos REST API Filling by Posts (prepare)" />
       </list>
     </recent_temporary>
   </component>
@@ -502,55 +465,55 @@
       <updated>1464639680482</updated>
       <workItem from="1464639681778" duration="64914000" />
       <workItem from="1465060132884" duration="37000" />
-      <workItem from="1465060265232" duration="12377000" />
+      <workItem from="1465060265232" duration="16301000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test - 2016.06.06 at 15h 49m 29s.xml">
-      <configuration name="test" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Task_2_b_Limits_and_Offset__videos_REST_API_Filling_by_Posts_(prepare) - 2016.06.07 at 11h 51m 58s.xml">
+      <configuration name="Task 2.b Limits and Offset./videos REST API Filling by Posts (prepare)" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test - 2016.06.06 at 16h 25m 52s.xml">
-      <configuration name="test" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Task_2_b_Limits_and_Offset__videos_REST_API_Filling_by_Posts_(prepare) - 2016.06.07 at 11h 54m 05s.xml">
+      <configuration name="Task 2.b Limits and Offset./videos REST API Filling by Posts (prepare)" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test_videos_rest_api_2b_test_js - 2016.06.04 at 21h 14m 30s.xml">
+    <history-entry file="Task_2_b_Limits_and_Offset__videos_REST_API_Filling_by_Posts_(prepare) - 2016.06.07 at 11h 58m 31s.xml">
+      <configuration name="Task 2.b Limits and Offset./videos REST API Filling by Posts (prepare)" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Task_2_b_Limits_and_Offset__videos_REST_API_Filling_by_Posts_(prepare) - 2016.06.07 at 12h 00m 25s.xml">
+      <configuration name="Task 2.b Limits and Offset./videos REST API Filling by Posts (prepare)" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Task_2_b_Limits_and_Offset__videos_REST_API_Filling_by_Posts_(prepare) - 2016.06.07 at 12h 01m 00s.xml">
+      <configuration name="Task 2.b Limits and Offset./videos REST API Filling by Posts (prepare)" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Task_2_b_Limits_and_Offset__videos_REST_API_Filling_by_Posts_(prepare) - 2016.06.07 at 12h 01m 18s.xml">
+      <configuration name="Task 2.b Limits and Offset./videos REST API Filling by Posts (prepare)" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Task_2_b_Limits_and_Offset__videos_REST_API_Filling_by_Posts_(prepare) - 2016.06.07 at 12h 01m 46s.xml">
+      <configuration name="Task 2.b Limits and Offset./videos REST API Filling by Posts (prepare)" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="testAll - 2016.06.07 at 14h 07m 59s.xml">
+      <configuration name="testAll" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test_videos_rest_api_2b_test_js - 2016.06.07 at 12h 02m 05s.xml">
       <configuration name="test/videos_rest_api_2b_test.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test_videos_rest_api_2b_test_js - 2016.06.04 at 21h 14m 43s.xml">
-      <configuration name="test/videos_rest_api_2b_test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_videos_rest_api_2b_test_js - 2016.06.04 at 21h 27m 00s.xml">
-      <configuration name="test/videos_rest_api_2b_test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_videos_rest_api_2b_test_js - 2016.06.04 at 21h 28m 42s.xml">
-      <configuration name="test/videos_rest_api_2b_test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_videos_rest_api_2b_test_js - 2016.06.04 at 21h 39m 26s.xml">
-      <configuration name="test/videos_rest_api_2b_test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_videos_rest_api_2b_test_js - 2016.06.04 at 21h 43m 48s.xml">
-      <configuration name="test/videos_rest_api_2b_test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_videos_rest_api_2b_test_js - 2016.06.06 at 15h 43m 36s.xml">
-      <configuration name="test/videos_rest_api_2b_test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_videos_rest_api_2b_test_js - 2016.06.06 at 15h 46m 48s.xml">
+    <history-entry file="test_videos_rest_api_2b_test_js - 2016.06.07 at 14h 07m 28s.xml">
       <configuration name="test/videos_rest_api_2b_test.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77328000" />
+    <option name="totallyTimeSpent" value="81252000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="835" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21458334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21458334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.5104167" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.5104167" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -770,14 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/videos_rest_api_2b_test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2265">
-          <caret line="151" column="55" selection-start-line="151" selection-start-column="55" selection-end-line="151" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/restapi/request-checks.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
@@ -810,26 +765,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/config_for_tests.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="1" selection-start-line="25" selection-start-column="33" selection-end-line="29" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/videos.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="79" column="56" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/videos_rest_api_2a_test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -842,10 +781,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/videos_rest_api_2a_test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/config_for_tests.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="25" column="3" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/restapi/limit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="18" column="91" selection-start-line="18" selection-start-column="91" selection-end-line="18" selection-end-column="91" />
+        <state relative-caret-position="266">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/videos_rest_api_2b_test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="256" column="8" selection-start-line="256" selection-start-column="8" selection-end-line="256" selection-end-column="8" />
           <folding />
         </state>
       </provider>
