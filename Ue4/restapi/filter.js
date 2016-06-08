@@ -19,10 +19,10 @@ function validateQuery(arr1, arr2) {
     var boolean = true;
         arr2.forEach(function (item2) {
             if(arr1.indexOf(item2)<0) {
-                console.log('should return false');
                 boolean = false;
             }
         });
+    return boolean;
 }
 
 /**
@@ -35,7 +35,7 @@ filter.route('/:id')
         var keys = req.query.filter.split(',');                         // array for key values from the query object
         var video = store.select('videos', req.params.id);              // get a video item form the store
         var video_keys = Object.keys(video);                            // get the keys of the video object
-        if(video & validateQuery(video_keys, keys)) {                   // validate if the query keys are subset of video keys
+        if(video && validateQuery(video_keys, keys)) {                   // validate if the query keys are subset of video keys
             var obj = {};                                               // create object and set propertys
                keys.forEach(function (key) {
                    if(video.hasOwnProperty(key)) {
@@ -48,6 +48,7 @@ filter.route('/:id')
         }
     }
 });
+
 
 
 

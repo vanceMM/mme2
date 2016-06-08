@@ -25,8 +25,6 @@ limit.route('/')
         if(limit === undefined || limit > videos.length) {
             limit = videos.length;
         }
-        console.log("offset is:" + offset);
-        console.log("limit is:" + limit);
         if((isNaN(limit) || isNaN(offset)) || (isNaN(limit) && (isNaN(offset)))) {
             res.status(400).json({'error' :{ 'code' : 400, 'message' : 'Only postive values are allowed in attributes'}});
         }

@@ -61,7 +61,7 @@ videos.route('/')
     });
 
 /**
- *  a route for put and post requests
+ *  a route for put and delete requests
  *  @param :id the videos id
  */
 videos.route('/:id')
