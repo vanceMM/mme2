@@ -12,13 +12,13 @@ var filter = require('express').Router();
 var store = require('../blackbox/store');
 /**
  *  helper function for
- * @param arr1 array of values that should be subset of arr1
- * @param arr2 array o values
+ * @param objectKeys array of values that should be subset of objectKeys
+ * @param filterKeys array of values
  */
-function validateQuery(arr1, arr2) {
+function validateQuery(objectKeys, filterKeys) {
     var boolean = true;
-        arr2.forEach(function (item2) {
-            if(arr1.indexOf(item2)<0) {
+        filterKeys.forEach(function (item) {
+            if(objectKeys.indexOf(item)<0) {            // if key(item) doesnt match, index is -1, so its false
                 boolean = false;
             }
         });
@@ -32,24 +32,51 @@ filter.route('/:id')
 
     .get(function (req, res, next) {
     if(req.query.filter) {
-        var keys = req.query.filter.split(',');                         // array for key values from the query object
+        var filterKeys = req.query.filter.split(',');                         // array for key values from the query object
         var video = store.select('videos', req.params.id);              // get a video item form the store
-        var video_keys = Object.keys(video);                            // get the keys of the video object
-        if(video && validateQuery(video_keys, keys)) {                   // validate if the query keys are subset of video keys
+        var video_keys = Object.keys(video);                            // get the filterKeys of the video object
+        if(video && validateQuery(video_keys, filterKeys)) {                   // validate if the query filterKeys are subset of video filterKeys
             var obj = {};                                               // create object and set propertys
-               keys.forEach(function (key) {
-                   if(video.hasOwnProperty(key)) {
+               filterKeys.forEach(function (key) {
+                   if(video.hasOwnProperty(key)) {                      // check if video contains passed property
                        obj[key] = video[key];
                    }
                });
             res.status(200).json(obj);                                  // send the new created object with custom propertys
         } else {
-            res.status(400).json();                                     // set status 400 if keys don't match
+            res.status(400).json();                                     // set status 400 if filterKeys don't match
         }
     }
 });
 
 
 
+/**
+ * route for videos with id to be filtered
+ */
+/*
+filter.route('/:id')
+
+    .get(function (req, res, next) {
+        if(req.query.filter) {
+            var filterKeys = req.query.filter.split(',');                         // array for key values from the query object
+            var video = store.select('videos', req.params.id);              // get a video item form the store
+            var video_keys = Object.keys(video);                            // get the filterKeys of the video object
+            if(video && validateQuery(video_keys, filterKeys)) {                   // validate if the query filterKeys are subset of video filterKeys
+                var obj = JSON.parse(JSON.stringify(video));                                              // create object and set propertys
+                console.log(obj);
+                filterKeys.forEach(function (key) {
+                    if(!video.hasOwnProperty(key)) {                      //
+                        //obj[key] = video[key];
+                        delete obj[key];
+                    }
+                });
+                res.status(200).json(obj);                                  // send the new created object with custom propertys
+            } else {
+                res.status(400).json();                                     // set status 400 if filterKeys don't match
+            }
+        }
+    });
+*/
 
 module.exports = filter;
