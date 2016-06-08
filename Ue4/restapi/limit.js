@@ -22,10 +22,13 @@ limit.route('/')
         if(offset === undefined) {
             offset = 0;
         }
-        if(limit === undefined || limit > videos.length) {
+        else if(offset >= videos.length) {
+            res.status(400).json();
+        }
+        if(limit === undefined || limit >= videos.length) {
             limit = videos.length;
         }
-        if((isNaN(limit) || isNaN(offset)) || (isNaN(limit) && (isNaN(offset)))) {
+        else if((isNaN(limit) || isNaN(offset)) || (isNaN(limit) && (isNaN(offset)))) {
             res.status(400).json({'error' :{ 'code' : 400, 'message' : 'Only postive values are allowed in attributes'}});
         }
         else if(limit<0 || offset<0) {
@@ -34,12 +37,13 @@ limit.route('/')
         else if(limit == 0) {
             res.status(400).json({'error' :{ 'code' : 400, 'message' : 'Only postive values are allowed in attributes'}});
         }
-        else if(offset == 0 && limit == 0) {
+        if(offset == 0 && limit == 0) {
             res.status(200).json(videos);
         } else {
             var limitVideos = [];
             for (var i = offset; i<limit; i++) {
                 var obj = videos[i];
+                console.log(obj);
                 limitVideos.push(obj);
             }
             res.status(200).json(limitVideos);
