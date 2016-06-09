@@ -5,7 +5,7 @@
  * @author Carlos Rezai, Benjamin Bleckmann, Valentin Risch
  *
  * @module restapi/filter
- * @type ?
+ * @type {Router}
  */
 
 var filter = require('express').Router();
@@ -24,7 +24,7 @@ function validateQuery(objectKeys, filterKeys) {
         });
     return boolean;
 }
- 
+
 /**
  * route for videos with id to be filtered
  */

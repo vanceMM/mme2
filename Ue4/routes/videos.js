@@ -1,6 +1,7 @@
 /** This module defines the routes for videos using the store.js as db memory
  *
  * @author Johannes Konert
+ * @edited by Carlos Rezai, Benjamin Bleckmann, Valentin Risch
  * @licence CC BY-SA 4.0
  *
  * @module routes/videos
@@ -31,17 +32,28 @@ var internalKeys = {id: 'number', timestamp: 'number'};
  simple route for get and post at '/'
  */
 videos.route('/')
+    /*
     .get(function(req, res, next) {
-        //TODO
+        var videos = store.select('videos');
+        res.status(200).json(videos);
     })
+    */
     //inserts a video to the store.js and sends it back to the client
     .post(function(req,res,next) {
         /*forEach(req.body, function (item) {
-            if(item.isNumber() & item < 0) {
-                res.status(400).json({'error' :{ 'code' : 400, 'message' : 'Only postive values are allowed in attributes'}});
-            }
-        });*/
-        if(req.body.ranking <0 ){
+         if(item.isNumber() & item < 0) {
+         res.status(400).json({'error' :{ 'code' : 400, 'message' : 'Only postive values are allowed in attributes'}});
+         }
+         });*/
+        if(
+            req.body.id ||
+            req.body.ranking < 0 ||
+            req.body.length < 0 || isNaN(req.body.length) || !req.body.length ||
+            !req.body.src || !req.body.title ||
+            req.body.timestamp
+            //typeof req.body.src === 'string' ||  req.body.src instanceof String
+            )
+        {
             res.status(400).json({'error' :{ 'code' : 400, 'message' : 'Only postive values are allowed in attributes'}});
         }
         //check if there is a timestamp, if not create one
@@ -49,6 +61,9 @@ videos.route('/')
             req.body.timestamp = Date.now();
         }
         //check if there is a playcount, if not create one with default value 0
+        if (!req.body.description){
+            req.body.description = "";
+        }
         if(!req.body.playcount) {
             req.body.playcount = 0;
         }
@@ -66,8 +81,8 @@ videos.route('/')
  */
 videos.route('/:id')
     .put(function (req, res, next) {
-       store.replace('videos', req.params.id, req.body);
-       res.json(store.select('videos', req.params.id));
+        store.replace('videos', req.params.id, req.body);
+        res.json(store.select('videos', req.params.id));
     })
     .delete(function (req, res, next) {
         //get the video object for the given id and check if it exists, send 400 if not
@@ -80,6 +95,12 @@ videos.route('/:id')
             res.set('Content-Type', 'json/application');
             res.status(204).end();
         }
+    })
+    // should not be idempotent
+    // TODO
+    .patch(function (req, res, next) {
+        store.replace('videos', req.params.id, req.body);
+        res.json(store.select('videos', req.params.id));
 });
 // route that catches all the others(wrong ones)
 videos.route('/*')
@@ -92,16 +113,16 @@ videos.route('/*')
 
 // this middleware function can be used, if you like (or remove it)
 /*videos.use(function(req, res, next){
-    // if anything to send has been added to res.locals.items
-    if (res.locals.items) {
-        // then we send it as json and remove it
-        res.json(res.locals.items);
-        delete res.locals.items;
-    } else {
-        // otherwise we set status to no-content
-        res.set('Content-Type', 'application/json');
-        res.status(204).end(); // no content;
-    }
-});*/
+ // if anything to send has been added to res.locals.items
+ if (res.locals.items) {
+ // then we send it as json and remove it
+ res.json(res.locals.items);
+ delete res.locals.items;
+ } else {
+ // otherwise we set status to no-content
+ res.set('Content-Type', 'application/json');
+ res.status(204).end(); // no content;
+ }
+ });*/
 
 module.exports = videos;

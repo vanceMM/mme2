@@ -24,6 +24,7 @@ var debug = require('debug')('me2u4:server');
 var store = require('./blackbox/store.js');
 var restAPIchecks = require('./restapi/request-checks.js');
 var videos = require('./routes/videos');
+var comments = require('./routes/comments');
 var filter = require('./restapi/filter');
 var limit = require('./restapi/limit');
 var search = require('./restapi/search');
@@ -57,7 +58,7 @@ app.use('/videos', search);
 // Routes ******************************************************
 app.use('/videos', videos);
 
-
+app.use('/comments', comments);
 
 
 

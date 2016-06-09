@@ -60,7 +60,39 @@ var videos = [
     }
 ];
 
-//memory.videos = videos;
+var comments = [
+    {   id: globalCounter(),
+        text: "comment1",
+        FromVideoId: 101,
+        timestamp: Date.now(),
+        likes: 100,
+        dislikes: 1
+    },
+    {   id: globalCounter(),
+        text: "comment2",
+        FromVideoId: 102,
+        timestamp: Date.now(),
+        likes: 23,
+        dislikes: 200
+    },
+    {   id: globalCounter(),
+        text: "comment3",
+        FromVideoId: 101,
+        timestamp: Date.now(),
+        likes: 302
+    },
+    {   id: globalCounter(),
+        text: "TUshameComment",
+        FromVideoId: 103,
+        timestamp: Date.now(),
+        likes: 2
+    }
+
+];
+
+// add default values to db
+memory.videos = videos;
+memory.comments = comments;
 
 //** private helper functions
 /**

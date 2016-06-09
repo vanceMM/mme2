@@ -5,7 +5,7 @@
  * @author Carlos Rezai, Benjamin Bleckmann, Valentin Risch
  *
  * @module restapi/filter
- * @type ?
+ * @type {Router}
  */
 
 var search = require('express').Router();

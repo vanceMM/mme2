@@ -5,7 +5,7 @@
  * @author Carlos Rezai, Benjamin Bleckmann, Valentin Risch
  *
  * @module restapi/limit
- * @type ?
+ * @type {Router}
  */
 
 var limit = require('express').Router();
@@ -22,23 +22,23 @@ limit.route('/')
         if(offset === undefined) {
             offset = 0;
         }
-        if(offset >= videos.length) {
+        else if(offset >= videos.length) {
             res.status(400).json();
         }
-        if(offset < 0) {
-            res.status(400).json({'error' :{ 'code' : 400, 'message' : 'Only postive values are allowed in attributes'}});
+        else if(offset < 0) {
+            res.status(400).json();
         }
         if(limit === undefined || limit >= videos.length) {
             limit = videos.length;
         }
         else if((isNaN(limit) || isNaN(offset)) || (isNaN(limit) && (isNaN(offset)))) {
-            res.status(400).json({'error' :{ 'code' : 400, 'message' : 'Only postive values are allowed in attributes'}});
-        }
+         res.status(400).json();
+         }
         else if(limit<0 || offset<0) {
-            res.status(400).json({'error' :{ 'code' : 400, 'message' : 'Only postive values are allowed in attributes'}});
+            res.status(400).json();
         }
         else if(limit == 0) {
-            res.status(400).json({'error' :{ 'code' : 400, 'message' : 'Only postive values are allowed in attributes'}});
+            res.status(400).json();
         }
         if(offset == 0 && limit == 0) {
             res.status(200).json(videos);
@@ -51,6 +51,7 @@ limit.route('/')
             }
             res.status(200).json(limitVideos);
         }
+
     });
 
 module.exports = limit;
