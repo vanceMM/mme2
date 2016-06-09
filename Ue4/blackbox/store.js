@@ -30,6 +30,37 @@ var globalCounter = (function() {
 // our "in memory database" is a simple object!
 var memory = {};
 // some default store content could be added here
+var videos = [
+    {   id: globalCounter(),
+        title: "Beuth for the world",
+        description: "The Beuth University is the best in berlin you can imagine",
+        src: "linkofbeuthgoeshere",
+        length: 1,
+        timestamp: Date.now(),
+        playcount: 0,
+        ranking: 100
+    },
+    {   id: globalCounter(),
+        title: "Beuth Rocks",
+        description: "If you come to beuth, you will experience some wonderful years",
+        src: "linkofbeuthgoeshere",
+        length: 2,
+        timestamp: Date.now(),
+        playcount: 0,
+        ranking: 120
+    },
+    {   id: globalCounter(),
+        title: "TU is the Deathstar",
+        description: "if you go to TU, you will never come back",
+        src: "linkofTUgoeshere",
+        length: 3,
+        timestamp: Date.now(),
+        playcount: 0,
+        ranking: 5
+    }
+];
+
+//memory.videos = videos;
 
 //** private helper functions
 /**

@@ -22,8 +22,11 @@ limit.route('/')
         if(offset === undefined) {
             offset = 0;
         }
-        else if(offset >= videos.length) {
+        if(offset >= videos.length) {
             res.status(400).json();
+        }
+        if(offset < 0) {
+            res.status(400).json({'error' :{ 'code' : 400, 'message' : 'Only postive values are allowed in attributes'}});
         }
         if(limit === undefined || limit >= videos.length) {
             limit = videos.length;
@@ -43,7 +46,7 @@ limit.route('/')
             var limitVideos = [];
             for (var i = offset; i<limit; i++) {
                 var obj = videos[i];
-                console.log(obj);
+                //console.log(obj);
                 limitVideos.push(obj);
             }
             res.status(200).json(limitVideos);

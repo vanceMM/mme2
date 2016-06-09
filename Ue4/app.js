@@ -26,6 +26,7 @@ var restAPIchecks = require('./restapi/request-checks.js');
 var videos = require('./routes/videos');
 var filter = require('./restapi/filter');
 var limit = require('./restapi/limit');
+var search = require('./restapi/search');
 
 
 // app creation
@@ -47,6 +48,10 @@ app.use('/videos', filter);
 
 // API request browsing
 app.use('/videos', limit);
+
+// API for search
+app.use('/videos', search);
+
 
 
 // Routes ******************************************************
