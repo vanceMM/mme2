@@ -10,7 +10,7 @@
 // remember: in modules you have 3 variables given by CommonJS
 // 1.) require() function
 // 2.) module.exports
-// 3.) exports (which is module.exports)
+// 3.) exports (which is module.exports) 
 
 // modules
 var express = require('express');
