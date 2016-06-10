@@ -33,6 +33,7 @@ Thumbs.db
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
+*workspace.xml
 
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
