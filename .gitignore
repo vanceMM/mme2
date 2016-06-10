@@ -1,10 +1,38 @@
-#Abagabe Zip File
-*.zip
-.DS_Store
+#### Projects ####
+Ue2/*
+Ue3/*
+media/*
 
+
+#### General ####
+*.zip
+
+# Application specific filesv
+node_modules
+.sass-cache
+
+
+#### Mac ####
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+
+#### Jetbrains-specific ####
 # User-specific stuff:
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
+
+# Mongo Explorer plugin:
+.idea/mongoSettings.xml
