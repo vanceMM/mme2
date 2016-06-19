@@ -57,53 +57,7 @@ videos.route('/')
 
 
 
-// for video/:id
-videos.route('/:videoId')
-    .get(function(req, res, next){
-       VideoModel.findById(req.params.videoId, function (err, video) {
-           if (!err) {
-               res.status(200).json(video);
-           }
-           next(err);
-       })
-    })
 
-
-
-    // .put(function (req, res, next) {
-    //
-    //     //var modelid = VideoModel.schema.paths._id;
-    //     //console.log("this should be id:" + modelid);
-    //
-    //     VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
-    //         if (!err) {
-    //             res.status(200).json(video);
-    //         }
-    //         next(err);
-    //     })
-    // })
-
-
-
-    .patch(function (req, res, next) {
-        VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
-            if (!err) {
-                res.status(200).json(video);
-            }
-            next(err);
-        })
-    })
-
-
-
-    .delete(function (req, res, next) {
-    VideoModel.findByIdAndRemove(req.params.videoId, function (err, video) {
-        if (!err) {
-            res.status(200).json(video)
-        }
-        next(err);
-    })
-});
 
 // this middleware function can be used, if you like or remove it
 /*
@@ -139,4 +93,55 @@ module.exports = videos;
 //         res.status(201).json(newVideo);
 //     }
 //     next();
+// });
+
+
+// last working stand
+
+// // for video/:id
+// videos.route('/:videoId')
+//     .get(function(req, res, next){
+//        VideoModel.findById(req.params.videoId, function (err, video) {
+//            if (!err) {
+//                res.status(200).json(video);
+//            }
+//            next(err);
+//        })
+//     })
+//
+//
+//
+//     // .put(function (req, res, next) {
+//     //
+//     //     //var modelid = VideoModel.schema.paths._id;
+//     //     //console.log("this should be id:" + modelid);
+//     //
+//     //     VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
+//     //         if (!err) {
+//     //             res.status(200).json(video);
+//     //         }
+//     //         next(err);
+//     //     })
+//     // })
+//
+//
+//
+//     .patch(function (req, res, next) {
+//         VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
+//             if (!err) {
+//                 res.status(200).json(video);
+//             }
+//             next(err);
+//         })
+//     })
+//
+//
+//
+//     .delete(function (req, res, next) {
+//     VideoModel.findByIdAndRemove(req.params.videoId, function (err, video) {
+//         if (!err) {
+//             res.status(200).json(video)
+//         }
+//         next(err);
+//     })
 // });

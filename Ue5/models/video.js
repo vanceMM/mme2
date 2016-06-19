@@ -22,11 +22,11 @@ var VideoSchema     = new Schema({
     title:          {type: String, required: true},
     description:    {type: String, default: ""},
     src:            {type: String, required: true},
-    length:         {type: Number, required: true},
-    playcount:      {type: Number, default: 0},
-    ranking:        {type: Number, default: 0}
+    length:         {type: Number, required: true, min: 0},
+    playcount:      {type: Number, default: 0, min: 0},
+    ranking:        {type: Number, default: 0, min: 0}
     },{
-     timestamp:     {createdAt: 'timestamp'}
+     timestamps:     {createdAt: 'timestamp'}
 });
 
 module.exports = mongoose.model('Video', VideoSchema);
