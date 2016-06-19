@@ -19,11 +19,29 @@ var requestLogger = require('morgan');
 var debug = require('debug')('me2u5:server');
 var morgan = require('morgan');
 
+
+
+
 // own modules
+// mongoose     &&       mongodb
+var mongoose = require('mongoose');
+var db = mongoose.connect('mongodb://localhost:27017/me2');
+/*
+ var db = mongoose.connection;
+ db.on('error', console.error.bind(console, 'connection error:'));
+ db.once('open', function() {
+ // we're connected!
+ console.log("kittens!!");
+ });
+ */
+
+
+
+// own Routes
 var restAPIchecks = require('./restapi/request-checks.js');
 var errorResponseWare = require('./restapi/error-response');
-
 var videos = require('./routes/videos');
+
 
 
 
