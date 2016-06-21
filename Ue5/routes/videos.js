@@ -35,7 +35,9 @@ var videos = express.Router();
 // {"title" :"dope", "description" : "i like it", "src" : "dingdongding.com", "length" : "8712831", "playcount" : "9123", "ranking" : "89"}
 // title : 'dope', description : 'i like it', src : 'dingdongding.com', length : '8712831', playcount : '9123', ranking : '89'
 
-
+var checkIds = function(req_id, obj_id) {
+    return req_id === obj_id;
+};
 
 
 // routes **********************
@@ -43,9 +45,9 @@ var videos = express.Router();
 videos.route('/')
     .get(function(req, res, next) {
         
-        VideoModel.find({}, function(err, items){
+        VideoModel.find({}, function(err, videos){
             if (!err) {
-                res.status(200).json(items);
+                res.status(200).json(videos);
             }
             next(err);
         });
@@ -55,6 +57,12 @@ videos.route('/')
         newVideo.save(function (err) {
             if (!err) {
                 res.status(201).json(newVideo);
+            } else {
+                err = {
+                    "status": 400,
+                    // TODO response the right error
+                    "message": "post could'nt be done"
+                }
             }
             next(err);
         });
@@ -77,24 +85,64 @@ videos.route('/:videoId')
 
         //var modelid = VideoModel.schema.paths._id;
         //console.log("this should be id:" + modelid);
+        var err = {};
 
-            VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
-                if (!err) {
-                    res.status(200).json(video);
+        if (checkIds(req.params.videoId, req.body.id) == false) {
+            err = {
+                "status": 400,
+                "message": "Request id differs from body id"
+            }
+            next(err);
+        }else {
+
+            for (var attribute in VideoModel.schema.paths) {
+                if (!(attribute in req.body)) {  //src, title
+
+                    if (VideoModel.schema.paths[attribute].isRequired == true) {
+                        err = {
+                            "status": 400,
+                            "message": "Request is missing the required field : " + attribute + "."
+                        }
+
+                    }
+                    if (VideoModel.schema.paths[attribute].options.default != undefined) {
+                        req.body[attribute] = VideoModel.schema.paths[attribute].options.default
+                    }
                 }
+            }
+            if (Object.keys(err).length != 0) {
                 next(err);
-            })
+            }
+            else {
+                VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
+                    if (!err) {
+                        res.status(200).json(video);
+                    }
+                    next(err);
+                })
+            }
+        }
     })
 
 
 
     .patch(function (req, res, next) {
+        //console.log("paramid =" + req.params.videoId);
+        //console.log("bodyid ="+ req.body._id);
+        if (checkIds(req.params.videoId, req.body._id) == false){
+            var err = {
+                "status" : 400,
+                "message" : "Request id differs from body id"
+            };
+            next(err);
+        } else {
             VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
                 if (!err) {
                     res.status(200).json(video);
                 }
                 next(err);
             })
+        }
     })
 
 
@@ -145,55 +193,4 @@ module.exports = videos;
 //         res.status(201).json(newVideo);
 //     }
 //     next();
-// });
-
-
-// last working stand
-
-// // for video/:id
-// videos.route('/:videoId')
-//     .get(function(req, res, next){
-//        VideoModel.findById(req.params.videoId, function (err, video) {
-//            if (!err) {
-//                res.status(200).json(video);
-//            }
-//            next(err);
-//        })
-//     })
-//
-//
-//
-//     // .put(function (req, res, next) {
-//     //
-//     //     //var modelid = VideoModel.schema.paths._id;
-//     //     //console.log("this should be id:" + modelid);
-//     //
-//     //     VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
-//     //         if (!err) {
-//     //             res.status(200).json(video);
-//     //         }
-//     //         next(err);
-//     //     })
-//     // })
-//
-//
-//
-//     .patch(function (req, res, next) {
-//         VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
-//             if (!err) {
-//                 res.status(200).json(video);
-//             }
-//             next(err);
-//         })
-//     })
-//
-//
-//
-//     .delete(function (req, res, next) {
-//     VideoModel.findByIdAndRemove(req.params.videoId, function (err, video) {
-//         if (!err) {
-//             res.status(200).json(video)
-//         }
-//         next(err);
-//     })
 // });
