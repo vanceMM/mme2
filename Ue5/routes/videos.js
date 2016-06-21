@@ -19,6 +19,10 @@ var express = require('express');
 var logger = require('debug')('me2u4:videos');
 var mongoose = require('mongoose');
 
+// own middlewares
+var filterware = require('../restapi/filter-middleware');
+var limitoffsetware = require('../restapi/limit_offset-middleware');
+
 
 // TODO add here your require for your own model file
 var VideoModel =  require('./../models/video');
@@ -56,9 +60,56 @@ videos.route('/')
         });
     });
 
+// for video/:id
+videos.route('/:videoId')
+    .get(function(req, res, next){
+       VideoModel.findById(req.params.videoId, function (err, video) {
+           if (!err) {
+               res.status(200).json(video);
+           }
+           next(err);
+       })
+    })
 
 
 
+    .put(function (req, res, next) {
+
+        //var modelid = VideoModel.schema.paths._id;
+        //console.log("this should be id:" + modelid);
+
+            VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
+                if (!err) {
+                    res.status(200).json(video);
+                }
+                next(err);
+            })
+    })
+
+
+
+    .patch(function (req, res, next) {
+            VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
+                if (!err) {
+                    res.status(200).json(video);
+                }
+                next(err);
+            })
+    })
+
+
+
+    .delete(function (req, res, next) {
+    VideoModel.findByIdAndRemove(req.params.videoId, function (err, video) {
+        if (!err) {
+            res.status(200).json(video)
+        }
+        next(err);
+    })
+});
+
+videos.use(filterware);
+videos.use(limitoffsetware);
 
 // this middleware function can be used, if you like or remove it
 /*

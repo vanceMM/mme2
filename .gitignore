@@ -12,6 +12,8 @@ media/*
 node_modules
 .sass-cache
 
+##### mongo
+Ue5/mongodb-data/*
 
 #### Mac ####
 # Folder view configuration files
