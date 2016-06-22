@@ -29,8 +29,7 @@ var VideoModel =  require('./../models/video');
 
 
 var videos = express.Router();
-videos.use(filterware);
-videos.use(limitoffsetware);
+
 
 
 
@@ -46,10 +45,9 @@ var checkIds = function(req_id, obj_id) {
 // for videos
 videos.route('/')
     .get(function(req, res, next) {
-        
         VideoModel.find({}, function(err, videos){
             if (!err) {
-                res.status(200).json(videos);
+                res.locals.items = videos;
             }
             next(err);
         });
@@ -168,12 +166,11 @@ videos.route('/:videoId')
     })
 });
 
-videos.use(filterware);
+//videos.use(filterware);
 videos.use(limitoffsetware);
 
 // this middleware function can be used, if you like or remove it
-/*
-videos.use(function(req, res, next){
+/*videos.use(function(req, res, next){
     // if anything to send has been added to res.locals.items
     if (res.locals.items) {
         // then we send it as json and remove it
@@ -184,8 +181,7 @@ videos.use(function(req, res, next){
         res.set('Content-Type', 'application/json');
         res.status(204).end(); // no content;
     }
-});
-*/
+});*/
 
 module.exports = videos;
 
