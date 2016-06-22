@@ -29,6 +29,8 @@ var VideoModel =  require('./../models/video');
 
 
 var videos = express.Router();
+videos.use(filterware);
+videos.use(limitoffsetware);
 
 
 
@@ -126,7 +128,7 @@ videos.route('/:videoId')
 
 
 
-    .patch(function (req, res, next) {
+    /*.patch(function (req, res, next) {
         //console.log("paramid =" + req.params.videoId);
         //console.log("bodyid ="+ req.body._id);
         if (checkIds(req.params.videoId, req.body._id) == false){
@@ -143,6 +145,16 @@ videos.route('/:videoId')
                 next(err);
             })
         }
+    })*/
+
+    .patch(function (req, res, next) {
+        //req.body.updatedAt = Date.now();
+        VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
+            if (!err) {
+                res.status(200).json(video)
+            }
+            next(err);
+        })
     })
 
 
