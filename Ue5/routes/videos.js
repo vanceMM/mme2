@@ -48,8 +48,9 @@ videos.route('/')
         VideoModel.find({}, function(err, videos){
             if (!err) {
                 res.locals.items = videos;
+                next();
             }
-            next(err);
+            //next(err);
         });
     })
     .post(function(req,res,next) {
@@ -74,6 +75,12 @@ videos.route('/:videoId')
        VideoModel.findById(req.params.videoId, function (err, video) {
            if (!err) {
                res.status(200).json(video);
+           }
+           else {
+               err = {
+                   "status": 400,
+                   "message": "Request id is invalid"
+               }
            }
            next(err);
        })
@@ -166,11 +173,11 @@ videos.route('/:videoId')
     })
 });
 
-//videos.use(filterware);
+videos.use(filterware);
 videos.use(limitoffsetware);
 
 // this middleware function can be used, if you like or remove it
-/*videos.use(function(req, res, next){
+videos.use(function(req, res, next){
     // if anything to send has been added to res.locals.items
     if (res.locals.items) {
         // then we send it as json and remove it
@@ -181,7 +188,7 @@ videos.use(limitoffsetware);
         res.set('Content-Type', 'application/json');
         res.status(204).end(); // no content;
     }
-});*/
+});
 
 module.exports = videos;
 
