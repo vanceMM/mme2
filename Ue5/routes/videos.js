@@ -20,8 +20,8 @@ var logger = require('debug')('me2u4:videos');
 var mongoose = require('mongoose');
 
 // own middlewares
-var filterware = require('../restapi/filter-middleware');
-var limitoffsetware = require('../restapi/limit_offset-middleware');
+//var filterware = require('../restapi/filter-middleware');
+//var limitoffsetware = require('../restapi/limit_offset-middleware');
 
 
 // TODO add here your require for your own model file
@@ -36,10 +36,12 @@ var videos = express.Router();
 // {"title" :"dope", "description" : "i like it", "src" : "dingdongding.com", "length" : "8712831", "playcount" : "9123", "ranking" : "89"}
 // title : 'dope', description : 'i like it', src : 'dingdongding.com', length : '8712831', playcount : '9123', ranking : '89'
 
-var checkIds = function(req_id, obj_id) {
+
+
+// this method compares passed id's
+var compareIds = function(req_id, obj_id) {
     return req_id === obj_id;
 };
-
 
 // routes **********************
 // for videos
@@ -47,7 +49,12 @@ videos.route('/')
     .get(function(req, res, next) {
         VideoModel.find({}, function(err, videos){
             if (!err) {
-                res.locals.items = videos;
+                res.status(200).json(videos);
+            } else {
+                err = {
+                    "status": 400,
+                    "message": "can't get any documents"
+                }
             }
             next(err);
         });
@@ -60,8 +67,7 @@ videos.route('/')
             } else {
                 err = {
                     "status": 400,
-                    // TODO response the right error
-                    "message": "post could'nt be done"
+                    "message": "post could'nt be sent"
                 }
             }
             next(err);
@@ -80,21 +86,25 @@ videos.route('/:videoId')
     })
 
 
-
     .put(function (req, res, next) {
 
-        //var modelid = VideoModel.schema.paths._id;
-        //console.log("this should be id:" + modelid);
         var err = {};
 
-        if (checkIds(req.params.videoId, req.body.id) == false) {
+        if (req.body.__v !== undefined) {
+            //delete req.body.__v;
+            err = {
+                "status": 409,
+                "message": "version cant be overwritten with " + req.body.__v + "."
+            };
+            next(err);
+        }
+        if (compareIds(req.params.videoId, req.body.id) == false) {
             err = {
                 "status": 400,
                 "message": "Request id differs from body id"
-            }
+            };
             next(err);
         }else {
-
             for (var attribute in VideoModel.schema.paths) {
                 if (!(attribute in req.body)) {  //src, title
 
@@ -110,6 +120,7 @@ videos.route('/:videoId')
                     }
                 }
             }
+
             if (Object.keys(err).length != 0) {
                 next(err);
             }
@@ -125,16 +136,94 @@ videos.route('/:videoId')
     })
 
 
+    // .patch(function (req, res, next) {
+    //     var err;
+    //
+    //     if (req.body.__v !== undefined){
+    //         err = {
+    //             "status": 409,
+    //             "message": "version cant be overwritten with " + req.body.__v + "."
+    //         };
+    //         next(err);
+    //     }
+    //     //
+    //     // if (date === VideoModel.find({}, 'updatedAt', function (err) {
+    //     //         err = {
+    //     //             "status" : 409,
+    //     //             "message": "Cant set the same Update-Date"
+    //     //         };
+    //     //         next(err)
+    //     //     }))
+    //
+    //     if (req.body._id !== undefined) {
+    //         if (compareIds(req.params.videoId, req.body._id) == false) {
+    //             err = {
+    //                 "status": 409,
+    //                 "message": "Request id differs from body id"
+    //             };
+    //             next(err);
+    //         }
+    //
+    //
+    //         else {
+    //             VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
+    //                 if (!err) {
+    //                     res.status(200).json(video);
+    //                 }
+    //                 next(err);
+    //             })
+    //         }
+    //     } else {
+    //         VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
+    //             if (!err) {
+    //                 res.status(200).json(video);
+    //             }
+    //             next(err);
+    //         })
+    //     }
+    // })
 
-    /*.patch(function (req, res, next) {
-        //console.log("paramid =" + req.params.videoId);
-        //console.log("bodyid ="+ req.body._id);
-        if (checkIds(req.params.videoId, req.body._id) == false){
-            var err = {
-                "status" : 400,
-                "message" : "Request id differs from body id"
-            };
-            next(err);
+
+
+    .patch(function (req, res, next) {
+        var err;
+
+        if (req.body.__v !== undefined){
+            delete req.body.__v;
+            // err = {
+            //     "status": 409,
+            //     "message": "version cant be overwritten with " + req.body.__v + "."
+            // };
+            // next(err);
+        }
+        //
+
+        // if (date === VideoModel.find({}, 'updatedAt', function (err) {
+        //         err = {
+        //             "status" : 409,
+        //             "message": "Cant set the same Update-Date"
+        //         };
+        //         next(err)
+        //     }))
+
+        if (req.body._id !== undefined) {
+            if (compareIds(req.params.videoId, req.body._id) == false) {
+                err = {
+                    "status": 409,
+                    "message": "Request id differs from body id"
+                };
+                next(err);
+            }
+
+
+            else {
+                VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
+                    if (!err) {
+                        res.status(200).json(video);
+                    }
+                    next(err);
+                })
+            }
         } else {
             VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
                 if (!err) {
@@ -143,17 +232,8 @@ videos.route('/:videoId')
                 next(err);
             })
         }
-    })*/
-
-    .patch(function (req, res, next) {
-        //req.body.updatedAt = Date.now();
-        VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
-            if (!err) {
-                res.status(200).json(video)
-            }
-            next(err);
-        })
     })
+
 
 
 
@@ -167,7 +247,7 @@ videos.route('/:videoId')
 });
 
 //videos.use(filterware);
-videos.use(limitoffsetware);
+//videos.use(limitoffsetware);
 
 // this middleware function can be used, if you like or remove it
 /*videos.use(function(req, res, next){

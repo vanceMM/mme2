@@ -48,14 +48,15 @@ router.use(function(req, res, next) {
 
 
 // request POST, PUT check that any content was send
+// request POST, PUT check that any content was send
 router.use(function(req, res, next) {
     var err = undefined;
     if (['POST', 'PUT', 'PATCH'].indexOf(req.method) > -1 && parseInt(req.get('Content-Length')) === 0) {
         err = new Error("content in body is missing");
         err.status = 400;
         next(err);
-    } else if ('PUT' === req.method && !req.body.id) {
-        err = new Error("content in body is missing field id");
+    } else if ('PUT' === req.method && !(req.body.id || req.body._id)) {
+        err = new Error("content in body is missing field id or _id");
         err.status = 400;
         next(err);
     }
