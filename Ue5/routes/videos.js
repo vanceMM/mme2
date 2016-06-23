@@ -93,13 +93,13 @@ videos.route('/:videoId')
 
         if (req.body.__v !== undefined) {
             delete req.body.__v;
-            err = {
-                "status": 409,
-                "message": "version cant be overwritten with " + req.body.__v + "."
-            };
-            next(err);
+            // err = {
+            //     "status": 409,
+            //     "message": "version cant be overwritten with " + req.body.__v + "."
+            // };
+            // next(err);
         }
-        if (compareIds(req.params.videoId, req.body.id) == false) {
+        if (compareIds(req.params.videoId, req.body._id) == false) {
             err = {
                 "status": 400,
                 "message": "Request id differs from body id"
@@ -107,7 +107,7 @@ videos.route('/:videoId')
             next(err);
         }else {
             for (var attribute in VideoModel.schema.paths) {
-                if (!(attribute in req.body)) {  //src, title
+                if (!(attribute in req.body)) {
 
                     if (VideoModel.schema.paths[attribute].isRequired == true) {
                         err = {
@@ -135,54 +135,6 @@ videos.route('/:videoId')
             }
         }
     })
-
-
-    // .patch(function (req, res, next) {
-    //     var err;
-    //
-    //     if (req.body.__v !== undefined){
-    //         err = {
-    //             "status": 409,
-    //             "message": "version cant be overwritten with " + req.body.__v + "."
-    //         };
-    //         next(err);
-    //     }
-    //     //
-    //     // if (date === VideoModel.find({}, 'updatedAt', function (err) {
-    //     //         err = {
-    //     //             "status" : 409,
-    //     //             "message": "Cant set the same Update-Date"
-    //     //         };
-    //     //         next(err)
-    //     //     }))
-    //
-    //     if (req.body._id !== undefined) {
-    //         if (compareIds(req.params.videoId, req.body._id) == false) {
-    //             err = {
-    //                 "status": 409,
-    //                 "message": "Request id differs from body id"
-    //             };
-    //             next(err);
-    //         }
-    //
-    //
-    //         else {
-    //             VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
-    //                 if (!err) {
-    //                     res.status(200).json(video);
-    //                 }
-    //                 next(err);
-    //             })
-    //         }
-    //     } else {
-    //         VideoModel.findByIdAndUpdate(req.params.videoId, req.body, {new: true}, function (err, video) {
-    //             if (!err) {
-    //                 res.status(200).json(video);
-    //             }
-    //             next(err);
-    //         })
-    //     }
-    // })
 
 
 
