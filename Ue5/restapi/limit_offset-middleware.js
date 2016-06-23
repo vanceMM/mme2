@@ -12,18 +12,22 @@ var VideoModel =  require('./../models/video');
 
 router.use(function (req, res, next) {
     eval('var offset='+ '{"skip": +req.query.offset}' );
-    eval('var limit='+ '{"limit": +req.query.limit}' );
+    var limit = req.query.limit;
     var items = res.locals.items;
 
     if(offset) {
         VideoModel.find({}, null, offset, function (err, videos) {
             if (!err) {
                 items = videos;
+                if(limit) {
+                    items.splice(limit);
+                }
+                res.locals.items = items;
+                next();
             }
 
-        }).limit(limit);
+        });
     }
-    next();
 
 
 });

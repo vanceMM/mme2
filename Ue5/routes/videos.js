@@ -49,14 +49,9 @@ videos.route('/')
     .get(function(req, res, next) {
         VideoModel.find({}, function(err, videos){
             if (!err) {
-                res.status(200).json(videos);
-            } else {
-                err = {
-                    "status": 400,
-                    "message": "can't get any documents"
-                }
+                res.locals.items = videos;
+                next();
             }
-            next(err);
         });
     })
     .post(function(req,res,next) {
@@ -81,17 +76,23 @@ videos.route('/:videoId')
            if (!err) {
                res.status(200).json(video);
            }
+           else {
+               err = {
+                   "status": 400,
+                   "message": "Request id is invalid"
+               }
+           }
            next(err);
        })
     })
 
 
     .put(function (req, res, next) {
-
+        
         var err = {};
 
         if (req.body.__v !== undefined) {
-            //delete req.body.__v;
+            delete req.body.__v;
             err = {
                 "status": 409,
                 "message": "version cant be overwritten with " + req.body.__v + "."
@@ -246,11 +247,11 @@ videos.route('/:videoId')
     })
 });
 
-//videos.use(filterware);
-//videos.use(limitoffsetware);
+videos.use(filterware);
+videos.use(limitoffsetware);
 
 // this middleware function can be used, if you like or remove it
-/*videos.use(function(req, res, next){
+videos.use(function(req, res, next){
     // if anything to send has been added to res.locals.items
     if (res.locals.items) {
         // then we send it as json and remove it
@@ -261,7 +262,7 @@ videos.route('/:videoId')
         res.set('Content-Type', 'application/json');
         res.status(204).end(); // no content;
     }
-});*/
+});
 
 module.exports = videos;
 
