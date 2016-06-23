@@ -20,8 +20,8 @@ var logger = require('debug')('me2u4:videos');
 var mongoose = require('mongoose');
 
 // own middlewares
-//var filterware = require('../restapi/filter-middleware');
-//var limitoffsetware = require('../restapi/limit_offset-middleware');
+var filterware = require('../restapi/filter-middleware');
+var limitoffsetware = require('../restapi/limit_offset-middleware');
 
 
 // TODO add here your require for your own model file
