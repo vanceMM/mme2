@@ -14,7 +14,7 @@ node_modules
 
 ##### mongo
 Ue5/mongodb-data/*
-
+Ue6/mongodb-data/*
 #### Mac ####
 # Folder view configuration files
 .DS_Store
