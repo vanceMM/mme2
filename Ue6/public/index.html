@@ -29,9 +29,11 @@
 
   <!-- main content -->
   <div class="content">
+
     <div id="video-container">
       <!-- list of videos -->
-      <ul>
+
+      <ul id="video-list">
         <!--list item -->
         <li>
           <div class="vid-container" id="video_1">
@@ -115,6 +117,24 @@
           </div>
         </li>
       </ul>
+      <script type="text/template" id="video-template">
+        <div class="vid-container" id="video_"></div>
+        <div class="video">
+          <video class="video">
+              <source src="<%= src %>" >
+          </video>
+          <p><%= title %></p>
+          <p><%= playcount %></p>
+          <p><%= length %></p>
+          <p><%= ranking %></p>
+        </div>
+        </div>
+        <div clas="vid-description">
+          <p><%= description %></p>
+          <button type="button" class="videoBtn playBtn">Play</button>
+          <button type="button" class="videoBtn stopBtn">Stop</button>
+        </div>
+</script>
     </div>
     <footer>
       <p>Copyright Bleckmann B. // Rezai A. C. // Risch V.</p>
