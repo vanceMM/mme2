@@ -4,18 +4,14 @@
 
 define(['backbone', 'underscore'],
     function (Backbone, _) {
-        var Video = {};
+        var result = {};
         var videoSchema = {
             idAttribute: '_id',
             urlRoot: '/videos',
-            title : 'title',
-            source : 'src',
-            length: 'length',
             defaults : {
                 description : '',
                 playcount: 0,
-                ranking: 0,
-                timestamp: ''
+                ranking: 0
             },
             initialize: function() {
                 // after constructor code
@@ -24,9 +20,7 @@ define(['backbone', 'underscore'],
                 if ( _.isEmpty(attr.title) ) {
                     return "Missing Title";
                 }
-                if (_.isEmpty(attr.source)) {
-                    return "Missing Source";
-                }
+
             }
         };
 
@@ -46,8 +40,8 @@ define(['backbone', 'underscore'],
             }
         });
 
-        Video.Model = VideoModel;
-        Video.Collection = VideoCollection;
-        return Video;
+        result.Model = VideoModel;
+        result.Collection = VideoCollection;
+        return result;
 
 });

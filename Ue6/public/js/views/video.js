@@ -12,7 +12,7 @@ define(['backbone', 'jquery', 'underscore'],
             render: function () {
                 this.$el.html(this.template(this.model.attributes));
                 return this;
-            },
+            }, 
             initialize: function () {
                 this.listenTo(this.model, 'change', this.render);
             }

@@ -32,27 +32,28 @@ require(['jquery','backbone', 'models/video', 'views/video'],
         },
         main: function(){
 
-            var videoModel = new Video.Model();
 
-            var videoView = new VideoView({model: videoModel});
-
-            console.log("here");
             $('body').prepend('<h1>VLOG.ME</h1>');
 
             var videoCollection = new Video.Collection();
+            
 
             videoCollection.fetch({
 
                 success: function() {
                     console.log("data was fetched");
+                    console.log(videoCollection);
                     console.log(videoCollection.length);
-                    videoView.render();
+                    var videoView = new VideoView({model: videoCollection.at(0)});
+                    $('.content').append(videoView.render().el);
 
                 },
                 error: function() {
                     console.log("something went wrong");
                 }
             });
+            /*console.log(videoCollection.models[0]);
+            var videoView = new VideoView(videoCollection.models[0]);*/
         }
     });
 
