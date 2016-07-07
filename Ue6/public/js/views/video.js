@@ -15,11 +15,8 @@ define(['backbone', 'jquery', 'underscore'],
             playVideo: function() {
 
                 //$(function() {
-                    //console.log("ok");
                     //var video = $('video');
-                    //console.log(video);
                     var videos = $('body').find("video");
-                    //console.log(videos);
                     //video.get(0).play();
                     for (var i = 0; i < videos.length; i++) {
                         var video = videos[i];
@@ -29,14 +26,10 @@ define(['backbone', 'jquery', 'underscore'],
                             continue; // just in case the HTML structure has changed
                         }
 
-                        console.log(controls);
-
                         var buttons = controls.children;
                         if (!buttons || buttons.length === 0) {
                             continue; // just in case the HTML structure has changed and buttons are missing
                         }
-
-                        console.log(buttons);
 
                         (function () {
                             var myVideo = video;
@@ -44,10 +37,6 @@ define(['backbone', 'jquery', 'underscore'],
                             var playButton = buttons[0];
                             var pauseButton = buttons[1];
                             var stopButton = buttons[2];
-
-                            console.log(playButton);
-                            console.log(pauseButton);
-                            console.log(stopButton);
 
                             playButton.addEventListener("click", function () {
                                 myVideo.play();

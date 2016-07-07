@@ -20,6 +20,9 @@ define(['backbone', 'underscore'],
                 if ( _.isEmpty(attr.title) ) {
                     return "Missing Title";
                 }
+                if ( _.isEmpty(attr.src) ){
+                    return "Missing src";
+                }
 
             }
         };

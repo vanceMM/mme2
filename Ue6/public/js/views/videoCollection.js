@@ -9,7 +9,6 @@ define(['backbone', 'jquery', 'underscore', 'views/video'],
             el: '#video-list',
             template: undefined,
             render: function () {
-                console.log(this);
                 this.$el.empty();
                 this.collection.each(function (video) {
                     var videoView = new VideoView({model: video});
