@@ -106,18 +106,18 @@ videos.route('/:videoId')
             };
             next(err);
         }else {
-            for (var attribute in VideoModel.schema.paths) {
-                if (!(attribute in req.body)) {
+            for (var fields in VideoModel.schema.paths) {
+                if (!(fields in req.body)) {
 
-                    if (VideoModel.schema.paths[attribute].isRequired == true) {
+                    if (VideoModel.schema.paths[fields].isRequired == true) {
                         err = {
                             "status": 400,
-                            "message": "Request is missing the required field : " + attribute + "."
+                            "message": "Request is missing the required field : " + fields + "."
                         }
-
                     }
-                    if (VideoModel.schema.paths[attribute].options.default != undefined) {
-                        req.body[attribute] = VideoModel.schema.paths[attribute].options.default
+
+                    if (VideoModel.schema.paths[fields].options.default != undefined) {
+                        req.body[fields] = VideoModel.schema.paths[fields].options.default
                     }
                 }
             }
