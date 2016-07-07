@@ -1,5 +1,5 @@
 /**
- * Created by valentin on 06/07/16.
+ * Created by doge on 06/07/16.
  */
 
 define(['backbone', 'jquery', 'underscore'],
